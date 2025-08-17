@@ -1,0 +1,15 @@
+# Ignore Python virtual environments and environment files
+env/
+.venv/
+__pycache__/
+*.env
+.env.*
+
+# Ignore macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

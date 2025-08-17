@@ -1,0 +1,8 @@
+name: bec
+dependencies:
+  - python
+  - numpy
+  - pandas
+  - pip
+  - pip:
+      - meltano
