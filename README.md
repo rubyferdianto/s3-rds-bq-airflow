@@ -1,10 +1,13 @@
-# S3-R```
-s3-rds## 🗂️ Project Structure
+# S3-RDS-BQ-Airflow Project
+
+This project demonstrates a comprehensive data pipeline with multiple import workflows into AWS RDS MySQL database.
+
+## 🗂️ Project Structure
 
 ```
 s3-rds-bq-airflow/
 ├── main.py                       # 🎯 Main orchestrator (runs all components)
-├── setup_database.py             # 🔧 Automated database setup
+├── setup_database.py             # � Automated database setup
 ├── check_databases.py            # 👀 Database connectivity check
 ├── s3_to_rds.py                  # 📥 S3 to RDS import workflow
 ├── csv_to_rds.py                 # 📥 Local CSV to RDS import workflow
@@ -16,34 +19,6 @@ s3-rds-bq-airflow/
 ├── .env.example                  # 📋 Template for environment variables
 ├── requirements-bec.yaml         # 🐍 Conda environment specification
 └── README.md                     # 📖 This file
-```── main.py                       # 🎯 Main orchestrator (runs all components)
-├── setup_database_simple.py      # 🔧 Database setup (creates database if needed)
-├── check_databases.py            # 👀 Database connectivity check
-├── s3_to_rds.py                  # 📥 S3 to RDS import workflow
-├── csv_to_rds.py                 # 📥 Local CSV to RDS import workflow
-├── csv_to_rds/                   # 📥 Local CSV staging folder
-├── csv_imported_to_rds/          # 📁 Local CSV completed folder
-├── s3-to-rds/                    # 📥 S3 staging folder (on S3)
-├── s3-imported-to-rds/           # 📁 S3 completed folder (on S3)
-└── ...other files
-```Project
-
-This project demonstrates a comprehensive data pipeline with multiple import workflows into AWS RDS MySQL database.
-
-## 🗂️ Project Structure
-
-```
-s3-rds-bq-airflow/
-├── main.py                       # 🎯 Main orchestrator (runs all components)
-├── setup_database_simple.py      # � Database setup (creates database if needed)
-├── check_databases.py            # 👀 Database connectivity check
-├── s3_to_rds.py                  # 📥 S3 to RDS import workflow
-├── csv_to_rds.py                 # 📥 Local CSV to RDS import workflow
-├── csv_to_rds/                   # 📥 Local CSV staging folder
-├── csv_imported_to_rds/          # � Local CSV completed folder
-├── s3-to-rds/                    # � S3 staging folder (on S3)
-├── s3-imported-to-rds/           # 📁 S3 completed folder (on S3)
-└── ...other files
 ```
 
 ## 🚀 Quick Start
@@ -105,14 +80,16 @@ Successfully loaded **9 tables** with **451,322+ total rows**:
 | olist_products_dataset | 32,951 | Product catalog |
 | product_category_name_translation | 71 | Category translations |
 
-## � **Workflow Options**
+## 🔄 **Workflow Options**
 
 ### Option 1: Complete Pipeline (Recommended)
 ```bash
 python main.py
 ```
-- Executes all steps in sequence
-- Database check → S3 import → Local CSV import
+- **Step 0**: Database setup (creates database if needed)
+- **Step 1**: Database connectivity check  
+- **Step 2**: S3 import → RDS
+- **Step 3**: Local CSV import → RDS
 
 ### Option 2: S3 Import Workflow
 1. **📥 Upload Files**: Place CSV files in S3 bucket `s3://bec-bucket-aws/s3-to-rds/`
@@ -120,7 +97,7 @@ python main.py
 3. **✅ Auto Processing**: Script imports to RDS and moves files to `s3-imported-to-rds/`
 
 ### Option 3: Local CSV Import Workflow
-1. **� Stage Files**: Place CSV files in `csv_to_rds/` folder
+1. **📥 Stage Files**: Place CSV files in `csv_to_rds/` folder
 2. **▶️ Run Import**: Execute `python csv_to_rds.py`
 3. **✅ Auto Processing**: Script imports to RDS and moves files to `csv_imported_to_rds/`
 
@@ -136,39 +113,15 @@ python main.py
 ### Utility Scripts:
 - **`show_storage.py`** - Show database storage details
 
-### Configuration:
-- **`.env`** - Your database credentials
-- **`requirements-bec.yaml`** - Python environment dependencies
+## ✨ Key Features
 
-## 📋 Environment Variables
-
-Required in `.env` file:
-```bash
-# AWS Configuration
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-AWS_DEFAULT_REGION=your_region
-
-# MySQL/RDS Configuration  
-MYSQL_HOST=your-rds-endpoint.amazonaws.com
-MYSQL_DATABASE=your_database_name
-MYSQL_USERNAME=your_username
-MYSQL_PASSWORD=your_password
-MYSQL_PORT=3306
-```
-
-## 🎯 Key Features
-
-- ✅ **Automatic Database Setup** - Ensures database exists before loading
-- ✅ **Controlled Import Process** - Only processes files in staging folder
-- ✅ **File Management** - Automatically moves imported files to track completion
-- ✅ **Direct CSV to RDS** - Loads directly from local CSV to RDS MySQL
-- ✅ **No S3 Required** - Bypasses S3 for faster, simpler loading
-- ✅ **Smart Duplicate Handling** - Replaces existing tables if re-imported
-- ✅ **Progress Tracking** - Real-time loading progress
-- ✅ **Error Handling** - Robust error management
-- ✅ **Column Cleaning** - MySQL-compatible column names
-- ✅ **Chunked Processing** - Handles large files efficiently
+- ✅ **Automated Pipeline** - Complete end-to-end workflow with one command
+- ✅ **Dual Import Methods** - Both S3 and local CSV import capabilities
+- ✅ **File Management** - Automatic file organization post-import
+- ✅ **Database Auto-Setup** - Creates database if it doesn't exist
+- ✅ **Error Handling** - Robust error management and logging
+- ✅ **Progress Tracking** - Real-time import progress
+- ✅ **MySQL Compatibility** - Optimized for AWS RDS MySQL
 
 ## 📈 Original Project Plan
 
@@ -181,16 +134,19 @@ MYSQL_PORT=3306
 
 ## 🔧 Current Implementation Status
 
-✅ **Completed**: Direct CSV → MySQL RDS loading  
+✅ **Completed**: 
+- Step 1: CSV → S3 and direct CSV → RDS loading
+- Step 2: S3 → RDS import workflow
+
 ⏳ **Next**: Steps 3-6 (BigQuery, Analytics, Visualization, Airflow)
 
 ## 🔧 Troubleshooting
 
 - **Connection Issues**: Run `python check_databases.py` to diagnose
-- **Missing Tables**: Re-run `python load_local_csvs.py`
+- **Database Setup**: Use `python setup_database.py` for interactive setup
+- **Missing Tables**: Re-run the appropriate import script
 - **Environment Issues**: Recreate conda environment
 - **Credentials**: Verify `.env` file configuration
 
 ---
-*Project completed: Successfully migrated 9 CSV files to AWS RDS MySQL*
-
+*Project Status: Successfully implemented dual CSV import workflows to AWS RDS MySQL with automated pipeline orchestration*
