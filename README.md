@@ -7,14 +7,12 @@ This project demonstrates a comprehensive data pipeline with multiple import wor
 ```
 s3-rds-bq-airflow/
 ├── main.py                       # 🎯 Main orchestrator (runs all components)
-├── setup_database.py             # � Automated database setup
-├── check_databases.py            # 👀 Database connectivity check
-├── s3_to_rds.py                  # 📥 S3 to RDS import workflow
-├── csv_to_rds.py                 # 📥 Local CSV to RDS import workflow
-├── csv_to_rds/                   # 📥 Local CSV staging folder
-├── csv_imported_to_rds/          # 📁 Local CSV completed folder
-├── s3-to-rds/                    # 📥 S3 staging folder (on S3)
-├── s3-imported-to-rds/           # 📁 S3 completed folder (on S3)
+├── setup-database.py             # � Automated database setup
+├── check-databases.py            # 👀 Database connectivity check
+├── s3-to-rds.py                  # 📥 S3 to RDS import workflow
+├── csv-to-rds.py                 # 📥 Local CSV to RDS import workflow
+├── csv-to-rds/                   # 📥 Local CSV staging folder
+├── csv-imported-to-rds/          # 📁 Local CSV completed folder
 ├── .env                          # 🔐 Database credentials (gitignored)
 ├── .env.example                  # 📋 Template for environment variables
 ├── requirements-bec.yaml         # 🐍 Conda environment specification
@@ -125,7 +123,8 @@ python main.py
 
 ## 📈 Original Project Plan
 
-1. Python will get the CSV files in local folder then import into S3.
+1. Python will check andy CSV into S3 under bucket "BEC-BUCKET-AWS\S3-TO-RDS"
+2. Python will also check if any CSV files ready to imported in local folder "CSV-TO-RDS"
 2. Meltano will get from AWS S3 to AWS RDS
 3. AWS RDS will transfer into GCP BigQuery
 4. BigQuery process data analytic for factsales dimension
