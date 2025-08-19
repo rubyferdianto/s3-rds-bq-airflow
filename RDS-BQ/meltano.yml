@@ -1,4 +1,7 @@
 version: 1
+default_environment: dev
+environments:
+- name: dev
 plugins:
   extractors:
   - name: tap-mysql
@@ -13,15 +16,9 @@ plugins:
       ssl: true
       default_replication_method: FULL_TABLE
       filter_databases:
-        - ${MYSQL_DATABASE}
+      - ${MYSQL_DATABASE}
   loaders:
   - name: target-bigquery
-    variant: z3z1ma
-    pip_url: target-bigquery
-    config:
-      project_id: ${GCP_PROJECT}
-      dataset_id: ${BQ_DATASET}
-      location: ${BQ_LOCATION}
-      add_metadata_columns: true
-      table_suffix: ''
+    variant: transferwise
+    pip_url: pipelinewise-target-bigquery
 project_id: 0198c1a8-d9b6-7a6d-8e2b-e1d8d6b2e556

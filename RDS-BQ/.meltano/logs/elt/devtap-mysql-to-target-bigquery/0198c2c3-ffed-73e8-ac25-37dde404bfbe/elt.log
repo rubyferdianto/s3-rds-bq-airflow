@@ -1,0 +1,85 @@
+2025-08-19T14:38:02.233691Z [info     ] Using systemdb state backend   run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe
+2025-08-19T14:38:02.236184Z [warning  ] No state was found, complete import. run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe
+2025-08-19T14:38:04.212938Z [info     ] Traceback (most recent call last): cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.213414Z [info     ]   File "/Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-airflow/RDS-BQ/.meltano/loaders/target-bigquery/venv/bin/target-bigquery", line 6, in <module> cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.213718Z [info     ]     from target_bigquery import main cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.213872Z [info     ]   File "/Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-airflow/RDS-BQ/.meltano/loaders/target-bigquery/venv/lib/python3.11/site-packages/target_bigquery.py", line 12, in <module> cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.214028Z [info     ]     import pkg_resources       cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.214173Z [info     ] ModuleNotFoundError: No module named 'pkg_resources' cmd_type=elb consumer=True job_name=dev:tap-mysql-to-target-bigquery name=target-bigquery producer=False run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe stdio=stderr string_id=target-bigquery
+2025-08-19T14:38:04.231186Z [error    ] Loader failed
+2025-08-19T14:38:04.231465Z [error    ] Block run completed            block_type=ExtractLoadBlocks duration_seconds=2.27 err=RunnerError('Loader failed') exit_codes={<PluginType.LOADERS: 'loaders'>: 1} run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe set_number=0 success=False
+2025-08-19T14:38:04.232617Z [info     ] Run completed                  duration_seconds=2.272 run_id=0198c2c3-ffed-73e8-ac25-37dde404bfbe status=failure
+2025-08-19T14:38:04.233504Z [error    ] Need help fixing this problem? Visit http://melta.no/ for troubleshooting steps, or to join our friendly Slack community.
+
+Run invocation could not be completed as block failed: Loader failed
+Traceback (most recent call last):
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/run.py", line 251, in _run_blocks
+    await blk.run()
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/block/extract_load.py", line 502, in run
+    await self.run_with_job()
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/block/extract_load.py", line 542, in run_with_job
+    await self.execute()
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/block/extract_load.py", line 494, in execute
+    await manager.run()
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/block/extract_load.py", line 709, in run
+    _check_exit_codes(
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/block/extract_load.py", line 881, in _check_exit_codes
+    raise RunnerError("Loader failed", {PluginType.LOADERS: consumer_code})  # noqa: EM101
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+meltano.core.runner.RunnerError: Loader failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/__init__.py", line 105, in _run_cli
+    cli(obj={"project": None})
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/core.py", line 1442, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/cli.py", line 46, in main
+    return super().main(*args, windows_expand_args=False, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/core.py", line 1363, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/utils.py", line 566, in invoke
+    super().invoke(ctx)  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/core.py", line 1830, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/utils.py", line 615, in invoke
+    super().invoke(ctx)
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/core.py", line 1226, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/params.py", line 75, in decorate
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/params.py", line 165, in decorate
+    func(project, *args, **kwargs)
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/core/utils/__init__.py", line 121, in wrapper
+    return asyncio.run(func(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/run.py", line 210, in run
+    raise err
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/run.py", line 206, in run
+    await _run_blocks(tracker, parsed_blocks, dry_run=dry_run)
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/meltano/cli/run.py", line 266, in _run_blocks
+    raise CliError(
+meltano.cli.utils.CliError: Run invocation could not be completed as block failed: Loader failed

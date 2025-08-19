@@ -1,0 +1,1453 @@
+{
+  "streams": [
+    {
+      "tap_stream_id": "bec-db-rds-olist_customers_dataset",
+      "table_name": "olist_customers_dataset",
+      "schema": {
+        "properties": {
+          "customer_city": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "customer_zip_code_prefix": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "customer_unique_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "customer_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "customer_state": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_customers_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 98787,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_city"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_zip_code_prefix"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_unique_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_state"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_geolocation_dataset",
+      "table_name": "olist_geolocation_dataset",
+      "schema": {
+        "properties": {
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geolocation_city": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geolocation_lat": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "geolocation_lng": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "geolocation_state": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geolocation_zip_code_prefix": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_geolocation_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 1000032,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geolocation_city"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geolocation_lat"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geolocation_lng"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geolocation_state"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geolocation_zip_code_prefix"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_order_items_dataset",
+      "table_name": "olist_order_items_dataset",
+      "schema": {
+        "properties": {
+          "product_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "shipping_limit_date": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "seller_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "price": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "order_item_id": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "order_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "freight_value": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_order_items_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 111456,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "shipping_limit_date"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "seller_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "price"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_item_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "freight_value"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_order_payments_dataset",
+      "table_name": "olist_order_payments_dataset",
+      "schema": {
+        "properties": {
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "payment_installments": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "payment_sequential": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "payment_type": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "payment_value": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_order_payments_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 103290,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "payment_installments"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "payment_sequential"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "payment_type"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "payment_value"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_order_reviews_dataset",
+      "table_name": "olist_order_reviews_dataset",
+      "schema": {
+        "properties": {
+          "review_score": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "review_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "review_creation_date": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "review_comment_title": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "review_answer_timestamp": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "review_comment_message": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_order_reviews_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 97950,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_score"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_creation_date"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_comment_title"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_answer_timestamp"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "review_comment_message"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_orders_dataset",
+      "table_name": "olist_orders_dataset",
+      "schema": {
+        "properties": {
+          "order_estimated_delivery_date": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_status": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_purchase_timestamp": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_delivered_customer_date": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_delivered_carrier_date": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "order_approved_at": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "customer_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_orders_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 95608,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_estimated_delivery_date"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_status"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_purchase_timestamp"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_delivered_customer_date"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_delivered_carrier_date"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "order_approved_at"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_products_dataset",
+      "table_name": "olist_products_dataset",
+      "schema": {
+        "properties": {
+          "product_description_lenght": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_width_cm": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_weight_g": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_photos_qty": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_name_lenght": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_length_cm": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "product_height_cm": {
+            "inclusion": "available",
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "product_category_name": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_products_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 32796,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_description_lenght"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_width_cm"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_weight_g"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_photos_qty"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_name_lenght"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_length_cm"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_height_cm"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "double",
+            "datatype": "double",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_category_name"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-olist_sellers_dataset",
+      "table_name": "olist_sellers_dataset",
+      "schema": {
+        "properties": {
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "seller_city": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "seller_id": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "seller_state": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "seller_zip_code_prefix": {
+            "inclusion": "available",
+            "minimum": -9223372036854775808,
+            "maximum": 9223372036854775807,
+            "type": [
+              "null",
+              "integer"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "olist_sellers_dataset",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 3095,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "seller_city"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "seller_id"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "seller_state"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "seller_zip_code_prefix"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "bigint",
+            "datatype": "bigint",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    },
+    {
+      "tap_stream_id": "bec-db-rds-product_category_name_translation",
+      "table_name": "product_category_name_translation",
+      "schema": {
+        "properties": {
+          "CREATED_DATE": {
+            "inclusion": "available",
+            "format": "date-time",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "product_category_name": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "product_category_name_english": {
+            "inclusion": "available",
+            "maxLength": 65535,
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "product_category_name_translation",
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected-by-default": false,
+            "database-name": "bec-db-rds",
+            "row-count": 71,
+            "is-view": false,
+            "table-key-properties": [],
+            "selected": true,
+            "replication-method": "FULL_TABLE"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "CREATED_DATE"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "datetime",
+            "datatype": "datetime",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_category_name"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "product_category_name_english"
+          ],
+          "metadata": {
+            "selected-by-default": true,
+            "sql-datatype": "text",
+            "datatype": "text",
+            "selected": true
+          }
+        }
+      ],
+      "selected": true,
+      "replication_method": "FULL_TABLE"
+    }
+  ]
+}

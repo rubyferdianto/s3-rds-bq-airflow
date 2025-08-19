@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Main orchestrator for s3-aurora-bq-airflow data pipeline
-1. Executes setup-database.py to create and configure RDS MySQL database
-2. Executes CSV-AURORA scripts for data import workflows
-3. Provides comprehensive pipeline execution with proper error handling
+Main orchestrator for s3-rds-bq-airflow data pipeline
+Complete end-to-end data pipeline:
+1. Database setup and configuration
+2. CSV to RDS MySQL import (local and S3)
+3. RDS MySQL to BigQuery transfer
 """
 
 import os
@@ -25,11 +26,21 @@ def run_script(script_path, description, cwd=None):
     logger.info(f"📜 Executing: {script_path}")
     
     try:
+        # Determine the working directory and script path
+        if cwd:
+            # If cwd is specified, the script path should be relative to cwd
+            full_script_path = os.path.join(cwd, os.path.basename(script_path))
+            working_dir = cwd
+        else:
+            # Use the script path as provided
+            full_script_path = script_path
+            working_dir = os.getcwd()
+        
         # Run the script using the same Python interpreter
-        result = subprocess.run([sys.executable, script_path], 
+        result = subprocess.run([sys.executable, full_script_path], 
                               capture_output=True, 
                               text=True, 
-                              cwd=cwd or os.getcwd())
+                              cwd=working_dir)
         
         if result.returncode == 0:
             logger.info(f"✅ {description} completed successfully")
@@ -56,17 +67,25 @@ def run_script(script_path, description, cwd=None):
 
 def check_environment_variables():
     """Check if required environment variables are set"""
-    required_vars = ['MYSQL_HOST', 'MYSQL_USERNAME', 'MYSQL_PASSWORD']
+    required_vars = [
+        'MYSQL_HOST', 'MYSQL_USERNAME', 'MYSQL_PASSWORD', 'MYSQL_DATABASE',
+        'GCP_PROJECT', 'BQ_DATASET', 'GOOGLE_APPLICATION_CREDENTIALS_JSON'
+    ]
     missing_vars = [var for var in required_vars if not os.getenv(var)]
     
     if missing_vars:
         logger.error("❌ Missing required environment variables!")
         logger.error(f"💡 Please set: {', '.join(missing_vars)}")
         logger.error("   Example in .env file:")
+        logger.error("   # MySQL Configuration")
         logger.error("   MYSQL_HOST=your-rds-endpoint.region.rds.amazonaws.com")
         logger.error("   MYSQL_USERNAME=your_username")
         logger.error("   MYSQL_PASSWORD=your_password")
         logger.error("   MYSQL_DATABASE=your_database_name")
+        logger.error("   # BigQuery Configuration")
+        logger.error("   GCP_PROJECT=your-project-id")
+        logger.error("   BQ_DATASET=your_dataset_name")
+        logger.error("   GOOGLE_APPLICATION_CREDENTIALS_JSON='{...}'")
         return False
     
     logger.info("✅ Environment variables check passed")
@@ -74,14 +93,14 @@ def check_environment_variables():
 
 def main():
     """Main orchestrator function"""
-    logger.info("=" * 70)
-    logger.info("🎯 STARTING S3-AURORA-BQ-AIRFLOW DATA PIPELINE")
-    logger.info("=" * 70)
+    logger.info("=" * 80)
+    logger.info("🎯 STARTING COMPLETE S3-RDS-BIGQUERY DATA PIPELINE")
+    logger.info("=" * 80)
     
     # Step 0: Check environment variables
-    logger.info("=" * 70)
+    logger.info("=" * 80)
     logger.info("STEP 0: ENVIRONMENT VALIDATION")
-    logger.info("=" * 70)
+    logger.info("=" * 80)
     
     if not check_environment_variables():
         logger.error("❌ Environment validation failed. Please fix and try again.")
@@ -92,7 +111,7 @@ def main():
         ("CSV-RDS/setup-database.py", "Database Setup Script"),
         ("CSV-RDS/csv-to-rds-via-s3.py", "Local CSV to RDS Import Script"),
         ("CSV-RDS/s3-to-rds.py", "S3 to RDS Import Script"),
-        ("RDS-BQ/run-pipeline.py", "RDS to BigQuery Import Script")
+        ("RDS-BQ/run-pipeline.py", "RDS to BigQuery Transfer Script")
     ]
     
     missing_scripts = []
@@ -109,9 +128,9 @@ def main():
     logger.info("✅ All required scripts found")
     
     # Step 1: Database setup and configuration
-    logger.info("=" * 70)
+    logger.info("=" * 80)
     logger.info("STEP 1: DATABASE SETUP AND CONFIGURATION")
-    logger.info("=" * 70)
+    logger.info("=" * 80)
     
     setup_success = run_script('CSV-RDS/setup-database.py', 'RDS MySQL database setup and configuration')
     if not setup_success:
@@ -121,58 +140,73 @@ def main():
     
     logger.info("✅ Database is ready for data import!")
     
-    # Step 1: Local CSV to RDS import
-    logger.info("=" * 70)
-    logger.info("STEP 1: LOCAL CSV TO RDS IMPORT")
-    logger.info("=" * 70)
+    # Step 2: Local CSV to RDS import
+    logger.info("=" * 80)
+    logger.info("STEP 2: LOCAL CSV TO RDS IMPORT")
+    logger.info("=" * 80)
 
     csv_success = run_script('CSV-RDS/csv-to-rds-via-s3.py', 'Local CSV to RDS import workflow')
     if not csv_success:
         logger.warning("⚠️ Local CSV to RDS import had issues, but continuing with S3 import")
 
-    # Step 2: S3 to RDS import
-    logger.info("=" * 70)
-    logger.info("STEP 2: S3 TO RDS IMPORT (DIRECT PANDAS READING)")
-    logger.info("=" * 70)
+    # Step 3: S3 to RDS import
+    logger.info("=" * 80)
+    logger.info("STEP 3: S3 TO RDS IMPORT (DIRECT READING)")
+    logger.info("=" * 80)
 
     s3_success = run_script('CSV-RDS/s3-to-rds.py', 'S3 to RDS import using direct pandas reading')
     if not s3_success:
-        logger.warning("⚠️ S3 to RDS import failed")
+        logger.warning("⚠️ S3 to RDS import failed, but continuing to BigQuery step")
 
-    # Step 3: RDS to BigQuery import
-    logger.info("=" * 70)
-    logger.info("STEP 3: RDS TO BIGQUERY IMPORT (MELTANO)")
-    logger.info("=" * 70)
+    # Step 4: RDS to BigQuery transfer
+    logger.info("=" * 80)
+    logger.info("STEP 4: RDS TO BIGQUERY TRANSFER")
+    logger.info("=" * 80)
 
-    bq_success = run_script('RDS-BQ/run-pipeline.py', 'RDS MySQL to BigQuery import using Meltano', cwd='RDS-BQ')
+    bq_success = run_script('RDS-BQ/run-pipeline.py', 'RDS MySQL to BigQuery transfer')
     if not bq_success:
-        logger.warning("⚠️ RDS to BigQuery import failed")
+        logger.error("⚠️ RDS to BigQuery transfer failed or no data found")
 
     # Final summary
-    logger.info("=" * 70)
-    logger.info("📊 PIPELINE EXECUTION SUMMARY")
-    logger.info("=" * 70)
+    logger.info("=" * 80)
+    logger.info("📊 COMPLETE PIPELINE EXECUTION SUMMARY")
+    logger.info("=" * 80)
     
     logger.info("✅ Environment validation: PASSED")
     logger.info("✅ Database setup: PASSED")
     logger.info(f"{'✅' if csv_success else '❌'} Local CSV to RDS import: {'PASSED' if csv_success else 'FAILED'}")
     logger.info(f"{'✅' if s3_success else '❌'} S3 to RDS import: {'PASSED' if s3_success else 'FAILED'}")
+    logger.info(f"{'✅' if bq_success else '❌'} RDS to BigQuery transfer: {'PASSED' if bq_success else 'FAILED'}")
     
     # Calculate overall status
-    if s3_success and csv_success:
-        logger.info("🎉 All pipeline steps completed successfully!")
-        logger.info("💡 Your data has been imported to RDS MySQL!")
+    data_imported = csv_success or s3_success
+    
+    if data_imported and bq_success:
+        logger.info("=" * 80)
+        logger.info("🎉 COMPLETE PIPELINE SUCCESSFULLY EXECUTED!")
+        logger.info("=" * 80)
+        logger.info("💡 Your data journey: CSV → RDS MySQL → BigQuery")
+        logger.info(f"� Check your BigQuery dataset: {os.getenv('GCP_PROJECT')}.{os.getenv('BQ_DATASET')}")
+        logger.info("✨ Data is now ready for analytics in BigQuery!")
         return 0
-    elif csv_success:
-        logger.info("🎯 Pipeline completed with S3 import issues (local CSV import successful)")
-        logger.info("💡 Local CSV data has been imported to RDS MySQL")
-        return 0
-    elif s3_success:
-        logger.info("🎯 Pipeline completed with local CSV import issues (S3 import successful)")
-        logger.info("💡 S3 data has been imported to RDS MySQL")
+    elif data_imported:
+        logger.info("=" * 80)
+        logger.info("🎯 PARTIAL SUCCESS: Data imported to RDS")
+        logger.info("=" * 80)
+        logger.info("💡 CSV data successfully imported to RDS MySQL")
+        logger.info("❌ BigQuery transfer failed - please check BigQuery configuration")
+        return 1
+    elif bq_success:
+        logger.info("=" * 80)
+        logger.info("🎯 PARTIAL SUCCESS: BigQuery transfer completed")
+        logger.info("=" * 80)
+        logger.info("💡 Existing RDS data transferred to BigQuery")
+        logger.info("❌ CSV import failed - please check CSV/S3 configuration")
         return 0
     else:
-        logger.error("❌ Pipeline completed with errors in both import methods")
+        logger.error("=" * 80)
+        logger.error("❌ PIPELINE FAILED: No successful data transfers")
+        logger.error("=" * 80)
         logger.error("💡 Please check the error messages above and fix issues")
         return 1
 
