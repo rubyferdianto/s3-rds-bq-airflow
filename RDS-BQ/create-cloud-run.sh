@@ -1,0 +1,13 @@
+gcloud run jobs create meltano-aurora-to-bq \
+  --image=asia-southeast1-docker.pkg.dev/infinite-byte-458600-a8/etl/meltano-aurora-to-bq:latest \
+  --service-account=meltano-job-sa@infinite-byte-458600-a8.iam.gserviceaccount.com \
+  --set-env-vars=GCP_PROJECT=infinite-byte-458600-a8 \
+  --set-env-vars=BQ_DATASET=bec_bq \
+  --set-env-vars=BQ_LOCATION=asia-southeast1 \
+  --set-env-vars=AURORA_HOST=your-aurora-cluster-endpoint \
+  --set-env-vars=AURORA_PORT=3306 \
+  --set-env-vars=AURORA_USERNAME=meltano_user \
+  --set-env-vars=AURORA_DATABASE=bec_aurora_db \
+  --set-secrets=MYSQL_PASSWORD=MYSQL_PASSWORD:latest \
+  --memory=2Gi --cpu=1 --max-retries=1 --task-timeout=3600 \
+  --region=asia-southeast1

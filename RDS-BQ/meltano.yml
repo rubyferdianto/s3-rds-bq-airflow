@@ -1,0 +1,27 @@
+version: 1
+plugins:
+  extractors:
+  - name: tap-mysql
+    variant: transferwise
+    pip_url: pipelinewise-tap-mysql
+    config:
+      host: ${MYSQL_HOST}
+      port: ${MYSQL_PORT}
+      user: ${MYSQL_USERNAME}
+      password: ${MYSQL_PASSWORD}
+      database: ${MYSQL_DATABASE}
+      ssl: true
+      default_replication_method: FULL_TABLE
+      filter_databases:
+        - ${MYSQL_DATABASE}
+  loaders:
+  - name: target-bigquery
+    variant: z3z1ma
+    pip_url: target-bigquery
+    config:
+      project_id: ${GCP_PROJECT}
+      dataset_id: ${BQ_DATASET}
+      location: ${BQ_LOCATION}
+      add_metadata_columns: true
+      table_suffix: ''
+project_id: 0198c1a8-d9b6-7a6d-8e2b-e1d8d6b2e556

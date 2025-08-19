@@ -7,16 +7,18 @@ This project demonstrates a comprehensive data pipeline with multiple import wor
 ```
 s3-rds-bq-airflow/
 ├── main.py                       # 🎯 Main orchestrator (runs all components)
-├── setup-database.py             # � Automated database setup
-├── check-databases.py            # 👀 Database connectivity check
-├── s3-to-rds.py                  # 📥 S3 to RDS import workflow
-├── csv-to-rds.py                 # 📥 Local CSV to RDS import workflow
-├── csv-to-rds/                   # 📥 Local CSV staging folder
-├── csv-imported-to-rds/          # 📁 Local CSV completed folder
-├── .env                          # 🔐 Database credentials (gitignored)
-├── .env.example                  # 📋 Template for environment variables
-├── requirements-bec.yaml         # 🐍 Conda environment specification
-└── README.md                     # 📖 This file
+├── CSV-RDS/                     # 📁 RDS CSV import workflows
+│   ├── s3-to-rds.py             # 📥 S3 to RDS import workflow (pandas-based)
+│   ├── csv-to-rds-via-s3.py     # 📥 Local CSV to RDS import workflow
+│   ├── create-rds-instance.py   # 🔧 Automated RDS instance creation
+│   └── backup/                  # 📁 Backup of old scripts
+├── csv-to-rds/                  # 📥 Local CSV staging folder
+├── csv-imported-to-rds/         # 📁 Local CSV completed folder
+├── RDS-BQ/                      # 📁 RDS to BigQuery workflows
+├── .env                         # 🔐 Database credentials (gitignored)
+├── .env.example                 # 📋 Template for environment variables
+├── requirements-bec.yaml        # 🐍 Conda environment specification
+└── README.md                    # 📖 This file
 ```
 
 ## 🚀 Quick Start
@@ -32,34 +34,36 @@ conda activate bec
 ```bash
 # Copy and edit environment variables
 cp .env.example .env
-# Edit .env with your actual AWS RDS credentials
+# Edit .env with your actual AWS RDS MySQL credentials
 ```
 
-### 3. Run Complete Pipeline
+### 3. Create RDS Instance (if needed)
+```bash
+# Create RDS MySQL instance with VPC and security groups
+python CSV-RDS/create-rds-instance.py
+```
+
+### 4. Run Complete Pipeline
 ```bash
 # Run the main orchestrator (recommended)
 python main.py
 
 # This will execute:
-# 0. Database setup (creates database if needed)
-# 1. Database connectivity check
-# 2. S3 to RDS import (from s3://bec-bucket-aws/s3-to-rds/)
-# 3. Local CSV to RDS import (from ./csv_to_rds/)
+# 0. Database connectivity check
+# 1. S3 to RDS import (from s3://bec-bucket-aws/s3-to-rds/)
+# 2. Local CSV to RDS import (from ./csv-to-rds/)
 ```
 
-### 4. Individual Components
+### 5. Individual Components
 ```bash
-# Database setup only
-python setup_database.py
-
 # Database check only
-python check_databases.py
+python main.py  # (includes connectivity check)
 
 # S3 to RDS import only
-python s3_to_rds.py
+python CSV-RDS/s3-to-rds.py
 
 # Local CSV to RDS import only
-python csv_to_rds.py
+python CSV-RDS/csv-to-rds-via-s3.py
 ```
 
 ## 📊 Database Status
@@ -84,42 +88,42 @@ Successfully loaded **9 tables** with **451,322+ total rows**:
 ```bash
 python main.py
 ```
-- **Step 0**: Database setup (creates database if needed)
-- **Step 1**: Database connectivity check  
-- **Step 2**: S3 import → RDS
-- **Step 3**: Local CSV import → RDS
+- **Step 0**: Database connectivity check  
+- **Step 1**: S3 import → RDS (pandas-based import)
+- **Step 2**: Local CSV import → RDS
 
 ### Option 2: S3 Import Workflow
 1. **📥 Upload Files**: Place CSV files in S3 bucket `s3://bec-bucket-aws/s3-to-rds/`
-2. **▶️ Run Import**: Execute `python s3_to_rds.py`
-3. **✅ Auto Processing**: Script imports to RDS and moves files to `s3-imported-to-rds/`
+2. **▶️ Run Import**: Execute `python CSV-RDS/s3-to-rds.py`
+3. **✅ Auto Processing**: Script imports to RDS using pandas and moves files to `s3-imported-to-rds/`
 
 ### Option 3: Local CSV Import Workflow
-1. **📥 Stage Files**: Place CSV files in `csv_to_rds/` folder
-2. **▶️ Run Import**: Execute `python csv_to_rds.py`
-3. **✅ Auto Processing**: Script imports to RDS and moves files to `csv_imported_to_rds/`
+1. **📥 Stage Files**: Place CSV files in `csv-to-rds/` folder
+2. **▶️ Run Import**: Execute `python CSV-RDS/csv-to-rds-via-s3.py`
+3. **✅ Auto Processing**: Script imports to RDS and moves files to `csv-imported-to-rds/`
 
 ## 🛠️ Available Scripts
 
 ### Core Pipeline Components:
 - **`main.py`** - Main orchestrator (runs all components in sequence)
-- **`setup_database.py`** - Automated database setup (runs first in pipeline)
-- **`check_databases.py`** - Database connectivity check  
-- **`s3_to_rds.py`** - S3 to RDS import workflow (connects to existing database)
-- **`csv_to_rds.py`** - Local CSV to RDS import workflow (connects to existing database)
+- **`CSV-RDS/create-rds-instance.py`** - Automated RDS instance creation with VPC setup
+- **`CSV-RDS/s3-to-rds.py`** - S3 to RDS import workflow with pandas-based processing
+- **`CSV-RDS/csv-to-rds-via-s3.py`** - Local CSV to RDS import workflow
 
 ### Utility Scripts:
-- **`show_storage.py`** - Show database storage details
+- **`show-storage.py`** - Show database storage details
 
 ## ✨ Key Features
 
 - ✅ **Automated Pipeline** - Complete end-to-end workflow with one command
 - ✅ **Dual Import Methods** - Both S3 and local CSV import capabilities
 - ✅ **File Management** - Automatic file organization post-import
-- ✅ **Database Auto-Setup** - Creates database if it doesn't exist
+- ✅ **RDS Infrastructure** - Automated RDS instance creation with VPC
 - ✅ **Error Handling** - Robust error management and logging
 - ✅ **Progress Tracking** - Real-time import progress
 - ✅ **MySQL Compatibility** - Optimized for AWS RDS MySQL
+- ✅ **Cost Effective** - Uses standard RDS instead of Aurora for cost optimization
+- ✅ **Pandas Integration** - Reliable pandas-based data processing
 
 ## 📈 Original Project Plan
 
@@ -141,11 +145,17 @@ python main.py
 
 ## 🔧 Troubleshooting
 
-- **Connection Issues**: Run `python check_databases.py` to diagnose
-- **Database Setup**: Use `python setup_database.py` for interactive setup
+- **Connection Issues**: Run `python main.py` to check database connectivity
 - **Missing Tables**: Re-run the appropriate import script
-- **Environment Issues**: Recreate conda environment
-- **Credentials**: Verify `.env` file configuration
+- **Environment Issues**: Recreate conda environment with `conda env create -f requirements-bec.yaml`
+- **Credentials**: Verify `.env` file configuration with RDS_* variables
+
+## 💰 Cost Optimization
+
+This project has been optimized for cost by switching from Aurora to standard RDS MySQL:
+- **Aurora**: More expensive but offers advanced features like S3 integration
+- **RDS MySQL**: Cost-effective alternative using pandas-based processing
+- **Free Tier**: Uses db.t3.micro instances eligible for AWS free tier
 
 ---
-*Project Status: Successfully implemented dual CSV import workflows to AWS RDS MySQL with automated pipeline orchestration*
+*Project Status: Successfully implemented dual CSV import workflows to AWS RDS MySQL with automated pipeline orchestration and cost optimization*

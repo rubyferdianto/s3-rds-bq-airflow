@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Main orchestrator for data pipeline
-1. Executes check_database to verify database connectivity
-2. Executes s3_to_rds to load files from S3 to RDS
-3. Executes csv_to_rds to load local CSV files to RDS
+1. Executes setup-database.py to create and configure database
+2. Executes s3_to_rds to load files from S3 to RDS MySQL
+3. Executes csv_to_rds to load local CSV files to RDS MySQL
 """
 
 import os
@@ -56,10 +56,9 @@ def main():
     
     # Check if all required scripts exist
     required_scripts = [
-        ('setup_database.py', 'Database setup'),
-        ('check_databases.py', 'Database connectivity check'),
-        ('s3_to_rds.py', 'S3 to RDS import'),
-        ('csv_to_rds.py', 'Local CSV to RDS import')
+        ("setup-database.py", "STEP 0: Database Setup"),
+        ("s3-to-rds.py", "STEP 1: S3 to RDS Import"),
+        ("csv-to-rds-via-s3.py", "STEP 2: Local CSV to RDS Import (via S3)")
     ]
     
     missing_scripts = []
@@ -71,52 +70,46 @@ def main():
         logger.error(f"❌ Missing required scripts: {', '.join(missing_scripts)}")
         sys.exit(1)
     
-    # Step 0: Setup database first
-    logger.info("\n" + "=" * 60)
-    logger.info("STEP 0: DATABASE SETUP")
+    # Step 0: Database setup (replaces manual database creation logic)
+    logger.info("=" * 60)
+    logger.info("STEP 0: DATABASE SETUP AND CONFIGURATION")
     logger.info("=" * 60)
     
-    if not run_script('setup_database.py', 'Database setup'):
+    setup_success = run_script('setup-database.py', 'Database setup and configuration')
+    if not setup_success:
         logger.error("❌ Database setup failed. Stopping pipeline.")
+        logger.error("💡 Please check your database credentials and connectivity.")
         sys.exit(1)
     
-    # Step 1: Check database connectivity
-    logger.info("\n" + "=" * 60)
-    logger.info("STEP 1: DATABASE CONNECTIVITY CHECK")
+    logger.info("✅ Database is ready for data import!")
+    
+    # Step 1: S3 to RDS import
     logger.info("=" * 60)
-    
-    if not run_script('check_databases.py', 'Database connectivity check'):
-        logger.error("❌ Database check failed. Stopping pipeline.")
-        sys.exit(1)
-    
-    # Step 2: S3 to RDS import
-    logger.info("\n" + "=" * 60)
-    logger.info("STEP 2: S3 TO RDS IMPORT")
+    logger.info("STEP 1: S3 TO RDS IMPORT")
     logger.info("=" * 60)
-    
-    s3_success = run_script('s3_to_rds.py', 'S3 to RDS import')
+
+    s3_success = run_script('s3-to-rds.py', 'S3 to RDS import')
     if not s3_success:
         logger.warning("⚠️ S3 to RDS import failed, but continuing with local CSV import")
-    
-    # Step 3: Local CSV to RDS import
-    logger.info("\n" + "=" * 60)
-    logger.info("STEP 3: LOCAL CSV TO RDS IMPORT")
+
+    # Step 2: Local CSV to RDS import
     logger.info("=" * 60)
-    
-    csv_success = run_script('csv_to_rds.py', 'Local CSV to RDS import')
+    logger.info("STEP 2: LOCAL CSV TO RDS IMPORT")
+    logger.info("=" * 60)
+
+    csv_success = run_script('csv-to-rds-via-s3.py', 'Local CSV to RDS import')
     if not csv_success:
         logger.warning("⚠️ Local CSV to RDS import had issues")
-    
+
     # Final summary
-    logger.info("\n" + "=" * 60)
+    logger.info("=" * 60)
     logger.info("📊 PIPELINE EXECUTION SUMMARY")
     logger.info("=" * 60)
     
     logger.info("✅ Database setup: PASSED")
-    logger.info("✅ Database connectivity check: PASSED")
     logger.info(f"{'✅' if s3_success else '❌'} S3 to RDS import: {'PASSED' if s3_success else 'FAILED'}")
     logger.info(f"{'✅' if csv_success else '❌'} Local CSV to RDS import: {'PASSED' if csv_success else 'FAILED'}")
-    
+
     if s3_success and csv_success:
         logger.info("🎉 All pipeline steps completed successfully!")
         return 0

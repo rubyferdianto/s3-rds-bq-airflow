@@ -1,8 +1,22 @@
 name: bec
 dependencies:
-  - python
+  - python=3.11
   - numpy
   - pandas
   - pip
   - pip:
       - meltano
+      - pymysql
+      - cryptography
+      - python-dotenv
+      - boto3
+      - pandas
+      - sqlalchemy
+      - botocore
+      - fsspec
+      - s3fs
+      - target-bigquery
+      - pipelinewise-tap-mysql
+      - google-cloud-bigquery
+      - google-auth
+      - jsonschema==4.23
