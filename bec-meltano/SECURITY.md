@@ -18,6 +18,45 @@ This project now uses environment variables to store sensitive credentials inste
 
 3. **Verify `.env` is ignored by Git:**
    ```bash
+   git check-ignore .env  # Should output: .env
+   ```
+
+## 🔒 Security Best Practices
+
+### What's Protected by .gitignore
+- `.env` - Environment variables with secrets
+- `google_credentials.json` - Google Cloud service account keys  
+- `*.json` - Any JSON credential files
+
+### Safe Credential Storage Options
+
+#### Option 1: Environment Variables (Current Setup)
+```bash
+# In .env file
+GOOGLE_CLOUD_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
+TAP_MYSQL_PASSWORD='your_password'
+TARGET_BIGQUERY_PROJECT='your-project-id'
+TARGET_BIGQUERY_DATASET='your_dataset'
+```
+
+#### Option 2: Credentials File (Alternative)
+1. Create `google_credentials.json` with service account key
+2. File is automatically ignored by git
+3. Update `meltano.yml` to use `credentials_path` instead of `credentials_json`
+
+## 🚫 Security Warnings
+
+- **NEVER** commit credential files to git
+- **NEVER** hardcode credentials in configuration files  
+- **ALWAYS** regenerate credentials if accidentally exposed
+- **REGULARLY** rotate service account keys
+
+## 🔄 Key Management
+
+1. **Generate new credentials** in Google Cloud Console
+2. **Update local `.env` file** with new credentials
+3. **Test the pipeline** to ensure credentials work
+4. **Delete old credentials** from Google Cloud Console
    git status  # .env should not appear in untracked files
    ```
 

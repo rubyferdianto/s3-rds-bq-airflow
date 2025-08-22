@@ -1,3 +1,6 @@
 /venv
 /.meltano
 .env
+google_credentials.json
+*.json
+!meltano.yml
