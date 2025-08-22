@@ -1,0 +1,62 @@
+version: 1
+default_environment: dev
+project_id: 0198cf5e-5994-79cf-b139-fa589862c550
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-mysql
+    variant: transferwise
+    pip_url: 
+      git+https://github.com/transferwise/pipelinewise.git#subdirectory=singer-connectors/tap-mysql
+    config:
+      host: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com
+      database: bec-db-rds      
+      user: admin
+      port: 3306
+  loaders:
+  - name: target-bigquery
+    variant: z3z1ma
+    pip_url: git+https://github.com/z3z1ma/target-bigquery.git
+    config:
+      batch_size: 104857600
+      credentials_json: | 
+        {
+          "type": "service_account",
+          "project_id": "infinite-byte-458600-a8",
+          "private_key_id": "451e62e857b350b71951260c6af13e57dba12e86",
+          "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCuDD3B5YeMHw3T\nt7ZH1bcGvKAOoie/lLfplbbzovZzDdz46VrsOw9OEA3cqwYpvq3LiP7BJUcQCduE\nOUDPOA43sucW0LawoQYJzRjopmNQ+AM+/83Ifna2AQqhkDDyMPx04KxlK2gddwSn\nWUzjHCPPMCT3ODuaVlI+IK9dNiT3diunnQ57Cv3rHealYQ88XIJU/GnPzmSj7CTy\nb5cQfpoWuXXDiFosFVC+yGZ5vQBWNJZQHzQ0lKVrQXHy9vFz54IEZ2WPJCjiqyl9\nkGICJ0gyWs/482g2T6adA1Od835ClNWCJIRVcq9Bh6QCXjBCM/7dKZ/1FwVl1D9U\no33n+VkZAgMBAAECggEARiAlg+m8vv7GHe9P0Mqxp1O5s5uvIzhDD6jkYW7gGIRV\n665uFW9IX94FD8uSvKAYu0Cz0FN6OeKW4UQGMle2FsgM5vrqGOmQGsPZzOc5bea3\nvBrqKWWW5AcwZt9HcVW+akMaAttF5FVPeTP4UCtG3FRcGIW+MhWkpmaZ8Zb+tvto\ncC5Q0I6gEJOQbKewFrbx5/5cf7kUZL6NuBFvs6AOP7rbFp1M2XE1oAa9MqHJ/thM\n0EQ6+M5qOEr+FHEVuw9G7pX794Zpu6a4ECCpM2ugcTXjeVGLnfcMO7Pr0Dov3mjE\ngEa0i1BXSSl+1Nj5qKEKKVdHuglhsjNB8w6FK49oXwKBgQD0qBSaNgFkcGFPrtoS\nz8C8Lhy72cUWS9/RkwoMnleaRmLML2YgXYVZKMXgF395CccRv7atpEmzodsrs+Mu\n+9Aw9xb1Y51c4zxVpc1cECaPFx1AIannM0/Bn5OkQ/jzV8jlqjbWdno45rYE6qhy\nzzKZBBscKviUh8sgaf2W4I6IVwKBgQC2HhRQRggk5A+1l5Gq4Yd9s7vix0Hoq3vA\nBdQORvkv369C8EGVoBqFmGam9wJtRqgMr3X3It3wZfiMVjA3rf1104c9BPYRcmpd\noj+UrHA53Jzch+Zb8qSCCng53xmb80TJCfx+q8ISm7WRtdOk4FpWJKnQDUFhFUmf\n6h/0b7IEDwKBgQDjNjXsAbvJS5UUK47baZXVLf4Bd31R96UlPSlYDrXM0RFwD5UI\n+dGdvAAI3cnE3w/BrAo7uRe5e9fP/oA+Yh43W0I3IwxB98dQw2q01Ur6GL1RkfH4\nhe7MIyc6puXNGPm6URockmtv7NOePU+zUDntYaLLxhyV1IcQ015vgJzegQKBgQCX\nA4pEpk3KiXKdWfnogOshSRDbk+8LSGdta2fUDvZCxHFISIGZ2RElBqLYgKr6gkSH\ngFeJftgap/PaKv4Arb4nHiheaObCwOWCjy+50OOel1lbZTWXuTTAwH3BP0a1EpxP\nOICvaS2c0JFXKjc92OwP0ocdhmBYaJaMjE/DGXu78QKBgGJHmfweD1/iE+5/mQeR\nFcgl3MfVo/30SKSk35kcKEDnrGCvDEDBxXpUBlnuTOmCUuKfNiJ+sJRNi/28+Cm1\ndHlL+2T0YFUVozkVao99yCNbZYaX7Qi78kWHYLIJeh+ZSOIexx68U/55Nf65emR7\n0iNumX6hEtuEZNBljHi+sUv6\n-----END PRIVATE KEY-----\n",
+          "client_email": "bigquery-admin@infinite-byte-458600-a8.iam.gserviceaccount.com",
+          "client_id": "103470331753829716812",
+          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+          "token_uri": "https://oauth2.googleapis.com/token",
+          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+          "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigquery-admin%40infinite-byte-458600-a8.iam.gserviceaccount.com",
+          "universe_domain": "googleapis.com"
+        }
+      dataset: bec_bq
+      denormalized: true
+      flattening_enabled: true
+      flattening_max_depth: 1
+      method: batch_job
+      project: infinite-byte-458600-a8
+
+# Jobs configuration
+jobs:
+- name: rds-to-bigquery
+  tasks:
+  - tap-mysql target-bigquery
+  
+# Hooks for automated cleanup
+hooks:
+  post-invoke:
+    tap-mysql:
+      - python meltano-post-hook.py
+    target-bigquery:
+      - python meltano-post-hook.py
+  post-run:
+    rds-to-bigquery:
+      - python meltano-post-hook.py
+

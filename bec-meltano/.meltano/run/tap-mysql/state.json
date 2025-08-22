@@ -1,0 +1,32 @@
+{
+  "currently_syncing": null,
+  "bookmarks": {
+    "bec-db-rds-olist_customers_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_geolocation_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_order_items_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_order_payments_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_order_reviews_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_orders_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_products_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-olist_sellers_dataset": {
+      "initial_full_table_complete": true
+    },
+    "bec-db-rds-product_category_name_translation": {
+      "initial_full_table_complete": true
+    }
+  }
+}

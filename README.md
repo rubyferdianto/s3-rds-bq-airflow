@@ -1,8 +1,6 @@
-# S3-RDS-BigQuery Compl├── RDS-BQ/                       # 📁 BigQuery transfer workflows
-│   ├── run-pipeline.py           # 🚀 RDS to BigQuery direct transfer
-│   └── check-bigquery.py         # ✅ BigQuery data verificationData Pipeline
+# S3-RDS-BigQuery Complete Data Pipeline
 
-A comprehensive end-to-end data pipeline that transfers CSV data from AWS S3 and local sources to RDS MySQL, then to Google BigQuery for analytics.
+A comprehensive end-to-end data pipeline that transfers CSV data from AWS S3 and local sources to RDS MySQL, then to Google BigQuery for analytics. Built with **Meltano ELT framework** for production-ready deployment.
 
 ## 🎯 Complete Data Flow
 
@@ -10,330 +8,209 @@ A comprehensive end-to-end data pipeline that transfers CSV data from AWS S3 and
 CSV Files (Local/S3) → AWS RDS MySQL → Google BigQuery
         ↓                    ↓              ↓
    📂 Source Data      🗄️ Staging DB    📊 Analytics
+        │                    │              │
+        └── Meltano ELT ──────┴──────────────┘
 ```
 
-## 🗂️ Project Structure
+## 📋 Requirements
+
+### Python Version
+- **Python 3.11** (Required for Meltano compatibility)
+- **Not compatible with Python 3.13+** (dependency conflicts)
+
+### Recommended Setup
+- **Production**: Meltano ELT framework (default)
+- **Development**: Direct Python approach (fallback)
+- **Orchestration**: Dagster for workflow management
+
+## 🗂️ Current Project Structure
 
 ```
-s3-rds-bq-airflow/
+s3-rds-bq-dagster/
 ├── main.py                       # 🎯 Complete pipeline orchestrator
-├── PROJECT_OVERVIEW.md           # 📋 Detailed project documentation
-├── CSV-RDS/                      # 📁 RDS import workflows
+├── bec-aws-bq/                   # 📁 AWS & BigQuery workflows
 │   ├── setup-database.py         # 🔧 Database setup and configuration
-│   ├── s3-to-rds.py              # 📥 S3 to RDS direct import (pandas)
-│   ├── csv-to-rds-via-s3.py      # 📥 Local CSV to RDS import
-│   └── create-rds-instance.py    # 🏗️ Automated RDS instance creation
-├── RDS-BQ/                       # 📁 BigQuery transfer workflows
-│   ├── run-pipeline.py           # � RDS to BigQuery direct transfer
-│   ├── check-bigquery.py         # ✅ BigQuery data verification
-│   └── direct-transfer.py        # � Standalone transfer utility
-├── csv/                          # � Local CSV source files
+│   ├── s3-to-rds.py              # 📥 S3 to RDS direct import
+│   ├── rds-to-bq.py              # 📤 RDS to BigQuery transfer
+│   ├── csv-to-s3.py              # � Local CSV to S3 upload
+│   ├── verify-bigquery.py        # ✅ BigQuery data verification
+│   └── csv-imported-to-rds/      # 📂 Processed CSV files
+├── bec-meltano/                  # 📁 Production Meltano ELT pipeline
+│   ├── meltano.yml               # ⚙️ Meltano configuration
+│   ├── rds-to-bq-meltano.py      # 🚀 Meltano pipeline runner
+│   ├── delete-rds-after-load.py  # 🧹 RDS cleanup after transfer
+│   ├── meltano-post-hook.py      # 🔗 Post-transfer automation
+│   ├── plugins/                  # � Meltano extractors & loaders
+│   └── .meltano/                 # �️ Meltano state & metadata
+├── bec-dagster/                  # 🎼 Orchestration framework
+│   ├── dagster_pipeline.py       # 🎯 Dagster asset definitions
+│   ├── start_dagster.sh          # 🌐 Dagster web UI launcher
+│   └── workspace.yaml            # ⚙️ Dagster configuration
 ├── .env                          # 🔐 Environment configuration (gitignored)
 ├── .env.example                  # 📋 Environment template
-├── requirements-bec.yaml         # 🐍 Conda environment specification
-├── requirements.txt              # 🐳 Docker/pip requirements
+├── requirements-bec.yaml         # 🐍 Conda environment specification (ONLY requirements file)
 └── README.md                     # 📖 This file
 ```
 
 ## 🚀 Quick Start - Complete Pipeline
 
 ### 1. Environment Setup
+
+**Conda Environment (Recommended & Only Option)**
 ```bash
-# Create conda environment
+# Create conda environment with Python 3.11 and all dependencies
 conda env create -f requirements-bec.yaml
 conda activate bec
 
-# Alternative: Using pip
-pip install -r requirements.txt
+# Verify installation
+python --version  # Should show 3.11.x
+meltano --version # Should show 3.7.8+
 ```
 
-### 2. Configuration
+### 2. Configure Environment Variables
 ```bash
-# Copy and edit environment variables
+# Copy template and edit with your credentials
 cp .env.example .env
-# Edit .env with your actual credentials:
-# - AWS RDS MySQL credentials
-# - Google Cloud BigQuery service account
-# - S3 bucket configuration
+nano .env  # Add your database and cloud credentials
 ```
 
-### 3. Run Complete End-to-End Pipeline
+### 3. Run Complete Pipeline
 ```bash
-# Execute the complete data pipeline
+# Run all stages (database setup → CSV import → BigQuery transfer)
 python main.py
+
+# Or run individual stages
+python main.py --stage csv-s3    # CSV to S3 upload
+python main.py --stage s3-rds    # S3 to RDS import
+python main.py --stage rds-bq    # RDS to BigQuery transfer
 ```
 
-This single command will:
-- ✅ **Step 1**: Set up and configure RDS MySQL database
-- ✅ **Step 2**: Import CSV data from local files to RDS
-- ✅ **Step 3**: Import CSV data directly from S3 to RDS  
-- ✅ **Step 4**: Transfer all RDS data to Google BigQuery
+## 🎼 Orchestration & Execution Options
 
-### 4. Verify Results
+### Dagster (Recommended for Development & Monitoring)
 ```bash
-# Check BigQuery data
-python RDS-BQ/check-bigquery.py
+# Start Dagster web UI
+cd bec-dagster/
+./start_dagster.sh
+
+# Access web interface at http://127.0.0.1:3000
 ```
 
-## 📊 Pipeline Components
-
-### 1. Database Setup (`CSV-RDS/`)
-- **Purpose**: AWS RDS MySQL database provisioning and configuration
-- **Key Features**: 
-  - Automated RDS instance creation with VPC and security groups
-  - Database connectivity verification
-  - Schema preparation for e-commerce data
-
-### 2. CSV to RDS Import (`CSV-RDS/`)
-- **Local Import**: Direct upload from local CSV files to RDS MySQL
-- **S3 Import**: Batch import from S3 bucket to RDS MySQL
-- **Data Validation**: Comprehensive data quality checks and error handling
-
-### 3. RDS to BigQuery Transfer (`RDS-BQ/`)
-- **Direct Transfer**: Efficient pandas-based data transfer bypassing complex ETL tools
-- **Performance**: Transfers 1.5M+ rows across 9 tables in ~1.5 minutes
-- **Reliability**: 100% success rate with comprehensive error handling and logging
-- **Auto Cleanup**: Optional automatic RDS data cleanup after successful BigQuery transfer
-
-### 4. Main Orchestrator (`main.py`)
-- **Complete Workflow**: End-to-end pipeline automation
-- **Error Handling**: Robust error management with detailed logging
-- **Monitoring**: Real-time progress tracking and performance metrics
-
-## 📊 Database Status
-
-Successfully loaded **9 tables** with **451,322+ total rows**:
-
-| Table | Rows | Description |
-|-------|------|-------------|
-| olist_customers_dataset | 99,441 | Customer information |
-| olist_geolocation_dataset | 1,000,163 | Geographic data |
-| olist_sellers_dataset | 3,095 | Seller information |
-| olist_orders_dataset | 99,441 | Order details |
-| olist_order_items_dataset | 112,650 | Order line items |
-| olist_order_payments_dataset | 103,886 | Payment information |
-| olist_order_reviews_dataset | 99,224 | Customer reviews |
-| olist_products_dataset | 32,951 | Product catalog |
-| product_category_name_translation | 71 | Category translations |
-
-## 🔄 **Complete Pipeline Workflow**
-
-### Main Pipeline Execution
+### Meltano ELT (Production)
 ```bash
-python main.py
+# Production approach with Meltano
+cd bec-meltano/
+python rds-to-bq-meltano.py
+
+# With automatic RDS cleanup after BigQuery transfer
+python rds-to-bq-meltano.py --enable-cleanup
 ```
 
-**4-Step Complete Data Flow:**
-- **Step 1**: 🗄️ Database Setup & Configuration
-- **Step 2**: 📥 Local CSV Import → RDS MySQL
-- **Step 3**: ☁️ S3 CSV Import → RDS MySQL  
-- **Step 4**: 🚀 RDS MySQL → Google BigQuery Transfer
-
-### Individual Component Testing
+### Direct Python (Development/Testing)
 ```bash
-# Test database connectivity only
-python CSV-RDS/test-connection.py
-
-# Test S3 import only
-python CSV-RDS/s3-to-rds.py
-
-# Test local CSV import only
-python CSV-RDS/csv-to-rds-via-s3.py
-
-# Test RDS to BigQuery transfer only
-python RDS-BQ/run-pipeline.py
-
-# Verify BigQuery data
-python RDS-BQ/check-bigquery.py
+# Direct approach for quick testing
+cd bec-aws-bq/
+python rds-to-bq.py
 ```
 
-## 🛠️ Available Scripts
+## 🐳 Docker Deployment
 
-### Core Pipeline Components:
-- **`main.py`** - Complete end-to-end pipeline orchestrator
-- **`CSV-RDS/create-rds-instance.py`** - Automated RDS instance creation with VPC setup
-- **`CSV-RDS/s3-to-rds.py`** - S3 to RDS import workflow with pandas-based processing
-- **`CSV-RDS/csv-to-rds-via-s3.py`** - Local CSV to RDS import workflow
-- **`RDS-BQ/run-pipeline.py`** - Direct RDS to BigQuery transfer pipeline
-- **`RDS-BQ/check-bigquery.py`** - BigQuery data verification utility
+The pipeline is optimized for Docker deployment using Meltano:
 
-### Utility Scripts:
-- **`CSV-RDS/test-connection.py`** - Database connectivity testing
-- **`show-storage.py`** - Database storage details analysis
-
-## ✨ Key Features
-
-- ✅ **Complete End-to-End Pipeline** - Single command executes full data flow
-- ✅ **Dual Import Methods** - Both S3 and local CSV import capabilities  
-- ✅ **Direct BigQuery Transfer** - Efficient RDS to BigQuery data movement
-- ✅ **Auto RDS Cleanup** - Optional automatic cleanup of RDS data after successful transfer
-- ✅ **File Management** - Automatic file organization post-import
-- ✅ **RDS Infrastructure** - Automated RDS instance creation with VPC
-- ✅ **Error Handling** - Robust error management and comprehensive logging
-- ✅ **Progress Tracking** - Real-time import and transfer progress
-- ✅ **MySQL Compatibility** - Optimized for AWS RDS MySQL
-- ✅ **Cost Effective** - Uses standard RDS instead of Aurora for cost optimization
-- ✅ **High Performance** - Pandas + BigQuery client for fast data processing
-- ✅ **Production Ready** - Clean, maintainable code with full documentation
-
-## 📈 Implementation Progress
-
-### ✅ **Completed Components**
-1. **CSV Management** ✅ - S3 and local CSV file processing
-2. **RDS Integration** ✅ - AWS RDS MySQL with automated setup
-3. **BigQuery Transfer** ✅ - Direct RDS to BigQuery pipeline (1.5M+ rows in ~1.5 minutes)
-4. **Complete Pipeline** ✅ - End-to-end orchestration in main.py
-5. **Error Handling** ✅ - Comprehensive logging and error management
-
-### 🔮 **Future Roadmap**
-- **Data Analytics** - BigQuery processing for factsales dimension analysis
-- **Visualization** - Dashboard creation for factsales insights  
-- **Airflow Integration** - Workflow orchestration and monitoring
-- **Incremental Sync** - Support for incremental data updates
-
-## 🔧 Technical Architecture
-
-### **Data Flow Architecture**
-```
-CSV Files (Local/S3) → AWS RDS MySQL → Google BigQuery → Analytics & Visualization
-```
-
-### **Technology Stack**
-- **Data Processing**: Python 3.11, Pandas, PyArrow
-- **Cloud Storage**: AWS S3, Google Cloud Storage  
-- **Databases**: AWS RDS MySQL, Google BigQuery
-- **Infrastructure**: AWS VPC, Security Groups
-- **Environment**: Conda (bec environment)
-
-### **Pipeline Performance**
-- **Transfer Speed**: 1.5M+ rows in ~1.5 minutes
-- **Success Rate**: 100% reliability with comprehensive error handling
-- **Scalability**: Handles large datasets with memory-efficient processing
-
----
-
-## 📋 Requirements
-
-### Environment Files
-- **`requirements-bec.yaml`** - Conda environment specification (recommended)
-- **`requirements.txt`** - Pip requirements for alternative setup
-
-### Key Dependencies
-```yaml
-# Core data processing
-pandas>=2.0.0
-pyarrow>=10.0.0
-google-cloud-bigquery>=3.0.0
-pymysql>=1.0.0
-
-# AWS integration  
-boto3>=1.26.0
-
-# Environment management
-python-dotenv>=1.0.0
-```
-
-### Configuration Requirements
 ```bash
-# Required environment variables in .env
+cd bec-meltano/
+# Note: Docker support available through Meltano containerization
+meltano run tap-mysql target-bigquery
+```
+
+## ⚙️ Configuration
+
+### Environment Variables (.env)
+```bash
+# MySQL/RDS Configuration
+MYSQL_HOST=your-rds-endpoint.region.rds.amazonaws.com
+MYSQL_USERNAME=your_username
+MYSQL_PASSWORD=your_password
+MYSQL_DATABASE=your_database_name
+
+# Google Cloud Configuration
+GCP_PROJECT=your-project-id
+BQ_DATASET=your_dataset_name
+GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type": "service_account", ...}'
+
+# AWS Configuration
 AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
-AWS_DEFAULT_REGION=ap-southeast-1
+S3_BUCKET_NAME=your-s3-bucket
 
-DB_HOST=your_rds_endpoint
-DB_USER=your_username
-DB_PASSWORD=your_password
-DB_NAME=your_database
-
-# BigQuery Configuration
-GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
-BQ_PROJECT_ID=your_project_id
-BQ_DATASET_ID=your_dataset_id
-
-# RDS Data Management (Optional)
-# WARNING: Setting this to 'true' will DELETE RDS data after BigQuery transfer!
-RDS_CLEANUP_AFTER_TRANSFER=false  # Set to 'true' to enable automatic cleanup
+# Pipeline Configuration
+USE_MELTANO=true  # Use Meltano ELT (recommended)
+RDS_CLEANUP_AFTER_TRANSFER=true  # Clean RDS after BigQuery transfer
 ```
 
----
+## 🔧 Development Notes
 
-## 🚨 Troubleshooting
+### Python Version Compatibility
+- **Python 3.11**: ✅ Fully supported (recommended)
+- **Python 3.12**: ⚠️ Limited support (some dependency issues)
+- **Python 3.13+**: ❌ Not supported (major dependency conflicts)
 
-### Common Issues & Solutions
+### Production vs Development
+- **Production**: Use Meltano ELT framework (`bec-meltano/`) for robust, containerized deployment
+- **Development**: Use direct Python approach (`bec-aws-bq/`) for quick testing
+- **Orchestration**: Dagster (`bec-dagster/`) provides workflow management and monitoring
+- **CI/CD**: Meltano provides better logging, state management, and error handling
 
-**Environment Setup Issues:**
-```bash
-# If conda environment creation fails
-conda clean --all
-conda env create -f requirements-bec.yaml
+### RDS Cleanup Feature
+The pipeline includes automated RDS cleanup after successful BigQuery transfer:
+- **Manual execution**: `python delete-rds-after-load.py`
+- **Automatic**: Triggered by Meltano post-hooks after successful transfer
+- **Verification**: Compares row counts between RDS and BigQuery before cleanup
+- **Safety**: Only deletes RDS data if BigQuery verification passes
 
-# If pip installation fails
-pip install --upgrade pip
-pip install -r requirements.txt
-```
+### Troubleshooting
+1. **Meltano installation issues**: Ensure Python 3.11 is active
+2. **BigQuery authentication**: Check GOOGLE_APPLICATION_CREDENTIALS_JSON format
+3. **RDS connection**: Verify security groups allow your IP address
+4. **Empty tables**: Check CSV files are present and S3 import completed
+5. **Hook execution**: Check `bec-meltano/post_hook.log` for cleanup logs
 
-**Database Connection Issues:**
-```bash
-# Test database connectivity
-python CSV-RDS/test-connection.py
+## 📊 Pipeline Features
 
-# Check RDS security groups allow connections
-# Ensure your IP is whitelisted in RDS security groups
-```
+- ✅ **Automated database setup and configuration**
+- ✅ **Resilient S3 to RDS import with file movement tracking**
+- ✅ **Production-ready Meltano ELT framework with post-hooks**
+- ✅ **Automated RDS cleanup after successful BigQuery transfer**
+- ✅ **Dagster orchestration with web UI monitoring**
+- ✅ **Comprehensive error handling and logging**
+- ✅ **Environment-based configuration**
+- ✅ **Data verification and integrity checks**
+- ✅ **State management and incremental updates**
+- ✅ **Multiple execution modes (production/development)**
 
-**BigQuery Transfer Issues:**
-```bash
-# Verify service account credentials
-export GOOGLE_APPLICATION_CREDENTIALS="path/to/service-account.json"
+## 🗂️ Key Components
 
-# Test BigQuery connectivity
-python RDS-BQ/check-bigquery.py
-```
+### Data Flow Scripts
+- **`bec-aws-bq/s3-to-rds.py`**: S3 to RDS MySQL import
+- **`bec-aws-bq/rds-to-bq.py`**: Direct RDS to BigQuery transfer
+- **`bec-meltano/rds-to-bq-meltano.py`**: Production Meltano pipeline
 
-**RDS Cleanup Configuration:**
-```bash
-# To enable automatic RDS cleanup after BigQuery transfer
-# WARNING: This will permanently delete RDS data!
-export RDS_CLEANUP_AFTER_TRANSFER=true
+### Automation & Cleanup
+- **`bec-meltano/delete-rds-after-load.py`**: RDS cleanup engine with safety checks
+- **`bec-meltano/meltano-post-hook.py`**: Automated post-transfer hooks
+- **`bec-aws-bq/verify-bigquery.py`**: BigQuery data verification
 
-# To keep RDS data intact (default)
-export RDS_CLEANUP_AFTER_TRANSFER=false
-```
+### Orchestration
+- **`bec-dagster/dagster_pipeline.py`**: Workflow orchestration assets
+- **`main.py`**: Central pipeline orchestrator
 
-**Memory Issues with Large Datasets:**
-- Pipeline uses chunked processing to handle large datasets efficiently
-- Monitor system memory during transfers for very large datasets
+## 🤝 Contributing
 
----
+1. Ensure Python 3.11 conda environment: `conda activate bec`
+2. Install environment: `conda env create -f requirements-bec.yaml`
+3. Test with both Meltano and direct approaches
+4. Update documentation for any new features
 
-## 📞 Support
+## 📄 License
 
-For technical support or questions:
-1. Check the troubleshooting section above
-2. Review log files for detailed error messages
-3. Verify all environment variables are correctly configured
-4. Ensure all required permissions are granted for AWS and Google Cloud services
-
----
-
-*This project provides a complete, production-ready data pipeline solution with comprehensive error handling, logging, and documentation.*
-- Step 2: S3 → RDS import workflow
-
-⏳ **Next**: Steps 3-6 (BigQuery, Analytics, Visualization, Airflow)
-
-## 🔧 Troubleshooting
-
-- **Connection Issues**: Run `python main.py` to check database connectivity
-- **Missing Tables**: Re-run the appropriate import script
-- **Environment Issues**: Recreate conda environment with `conda env create -f requirements-bec.yaml`
-- **Credentials**: Verify `.env` file configuration with RDS_* variables
-
-## 💰 Cost Optimization
-
-This project has been optimized for cost by switching from Aurora to standard RDS MySQL:
-- **Aurora**: More expensive but offers advanced features like S3 integration
-- **RDS MySQL**: Cost-effective alternative using pandas-based processing
-- **Free Tier**: Uses db.t3.micro instances eligible for AWS free tier
-
----
-*Project Status: Successfully implemented dual CSV import workflows to AWS RDS MySQL with automated pipeline orchestration and cost optimization*
+This project is licensed under the MIT License - see the LICENSE file for details.

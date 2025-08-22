@@ -1,0 +1,3 @@
+[console_scripts]
+pytest11=singer_sdk:testing.pytest_plugin
+

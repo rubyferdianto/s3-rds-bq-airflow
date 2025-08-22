@@ -1,0 +1,1078 @@
+2025-08-22 12:23:00,708 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:23:00.708059
+2025-08-22 12:23:00,708 - INFO - 🎯 Transferring all tables
+2025-08-22 12:23:00,708 - INFO - ============================================================
+2025-08-22 12:23:00,708 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:23:00,708 - INFO - ============================================================
+2025-08-22 12:23:00,708 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:23:00,907 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:23:00,907 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:23:02,867 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:23:02,867 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:23:03,566 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:23:03,567 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:23:03,594 - INFO - 📋 Found 9 tables:
+2025-08-22 12:23:03,595 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_orders_dataset: 98,155 rows (21.55 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_order_reviews_dataset: 97,240 rows (17.55 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_products_dataset: 32,873 rows (3.52 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 12:23:03,595 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:23:03,595 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:23:03,595 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:23:03,595 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:23:03,595 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:23:03,646 - INFO - 📊 Total rows to transfer: 112,650
+2025-08-22 12:23:03,646 - INFO - 📦 Processing chunk: 0 to 10,000
+2025-08-22 12:24:29,504 - INFO -    📈 Progress: 10,000/112,650 rows (8.9%)
+2025-08-22 12:24:29,505 - INFO - 📦 Processing chunk: 10,000 to 20,000
+2025-08-22 12:25:15,462 - INFO -    📈 Progress: 20,000/112,650 rows (17.8%)
+2025-08-22 12:25:15,463 - INFO - 📦 Processing chunk: 20,000 to 30,000
+2025-08-22 12:25:24,475 - INFO -    📈 Progress: 30,000/112,650 rows (26.6%)
+2025-08-22 12:25:24,475 - INFO - 📦 Processing chunk: 30,000 to 40,000
+2025-08-22 12:25:28,876 - INFO -    📈 Progress: 40,000/112,650 rows (35.5%)
+2025-08-22 12:25:28,876 - INFO - 📦 Processing chunk: 40,000 to 50,000
+2025-08-22 12:25:34,532 - INFO -    📈 Progress: 50,000/112,650 rows (44.4%)
+2025-08-22 12:25:34,532 - INFO - 📦 Processing chunk: 50,000 to 60,000
+2025-08-22 12:25:39,202 - INFO -    📈 Progress: 60,000/112,650 rows (53.3%)
+2025-08-22 12:25:39,202 - INFO - 📦 Processing chunk: 60,000 to 70,000
+2025-08-22 12:25:43,159 - INFO -    📈 Progress: 70,000/112,650 rows (62.1%)
+2025-08-22 12:25:43,159 - INFO - 📦 Processing chunk: 70,000 to 80,000
+2025-08-22 12:25:47,706 - INFO -    📈 Progress: 80,000/112,650 rows (71.0%)
+2025-08-22 12:25:47,706 - INFO - 📦 Processing chunk: 80,000 to 90,000
+2025-08-22 12:25:51,654 - INFO -    📈 Progress: 90,000/112,650 rows (79.9%)
+2025-08-22 12:25:51,654 - INFO - 📦 Processing chunk: 90,000 to 100,000
+2025-08-22 12:25:56,627 - INFO -    📈 Progress: 100,000/112,650 rows (88.8%)
+2025-08-22 12:25:56,627 - INFO - 📦 Processing chunk: 100,000 to 110,000
+2025-08-22 12:26:02,669 - INFO -    📈 Progress: 110,000/112,650 rows (97.6%)
+2025-08-22 12:26:02,669 - INFO - 📦 Processing chunk: 110,000 to 112,650
+2025-08-22 12:26:07,789 - INFO -    📈 Progress: 112,650/112,650 rows (100.0%)
+2025-08-22 12:26:09,326 - INFO - ✅ Transfer complete for olist_order_items_dataset
+2025-08-22 12:26:09,326 - INFO -    📊 MySQL rows: 112,650
+2025-08-22 12:26:09,326 - INFO -    📊 BigQuery rows: 112,650
+2025-08-22 12:26:09,326 - INFO -    ✅ Match: Yes
+2025-08-22 12:26:09,327 - INFO - ✅ Successfully transferred: olist_order_items_dataset
+2025-08-22 12:26:09,327 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 12:26:09,327 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 12:26:09,358 - INFO - 📊 Rows to delete: 112,650
+2025-08-22 12:26:10,051 - INFO - ✅ Successfully deleted 112,650 rows from olist_order_items_dataset
+2025-08-22 12:26:10,083 - INFO - ✅ Verification: Table olist_order_items_dataset is now empty
+2025-08-22 12:26:10,089 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 12:26:10,089 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:26:10,089 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:26:10,106 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:26:10,106 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:26:13,647 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:26:13,647 - INFO - ✅ Successfully transferred: olist_customers_dataset
+2025-08-22 12:26:13,647 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 12:26:13,647 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 12:26:13,785 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:26:13,785 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:26:13,785 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 12:26:13,785 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:26:13,785 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:26:13,859 - INFO - 📊 Total rows to transfer: 99,441
+2025-08-22 12:26:13,859 - INFO - 📦 Processing chunk: 0 to 10,000
+2025-08-22 12:26:45,413 - INFO -    📈 Progress: 10,000/99,441 rows (10.1%)
+2025-08-22 12:26:45,413 - INFO - 📦 Processing chunk: 10,000 to 20,000
+2025-08-22 12:26:51,001 - INFO -    📈 Progress: 20,000/99,441 rows (20.1%)
+2025-08-22 12:26:51,001 - INFO - 📦 Processing chunk: 20,000 to 30,000
+2025-08-22 12:26:55,074 - INFO -    📈 Progress: 30,000/99,441 rows (30.2%)
+2025-08-22 12:26:55,074 - INFO - 📦 Processing chunk: 30,000 to 40,000
+2025-08-22 12:26:59,606 - INFO -    📈 Progress: 40,000/99,441 rows (40.2%)
+2025-08-22 12:26:59,606 - INFO - 📦 Processing chunk: 40,000 to 50,000
+2025-08-22 12:27:04,725 - INFO -    📈 Progress: 50,000/99,441 rows (50.3%)
+2025-08-22 12:27:04,725 - INFO - 📦 Processing chunk: 50,000 to 60,000
+2025-08-22 12:27:09,232 - INFO -    📈 Progress: 60,000/99,441 rows (60.3%)
+2025-08-22 12:27:09,232 - INFO - 📦 Processing chunk: 60,000 to 70,000
+2025-08-22 12:27:13,225 - INFO -    📈 Progress: 70,000/99,441 rows (70.4%)
+2025-08-22 12:27:13,225 - INFO - 📦 Processing chunk: 70,000 to 80,000
+2025-08-22 12:27:18,448 - INFO -    📈 Progress: 80,000/99,441 rows (80.4%)
+2025-08-22 12:27:18,449 - INFO - 📦 Processing chunk: 80,000 to 90,000
+2025-08-22 12:27:23,750 - INFO -    📈 Progress: 90,000/99,441 rows (90.5%)
+2025-08-22 12:27:23,750 - INFO - 📦 Processing chunk: 90,000 to 99,441
+2025-08-22 12:28:22,741 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:28:22.741727
+2025-08-22 12:28:22,742 - INFO - 🎯 Transferring all tables
+2025-08-22 12:28:22,742 - INFO - ============================================================
+2025-08-22 12:28:22,742 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:28:22,742 - INFO - ============================================================
+2025-08-22 12:28:22,742 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:28:22,969 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:28:22,969 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:28:24,610 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:28:24,610 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:28:25,317 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:28:25,317 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:28:25,414 - INFO - 📋 Found 9 tables:
+2025-08-22 12:28:25,415 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_orders_dataset: 98,155 rows (21.55 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_order_reviews_dataset: 97,240 rows (17.55 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_products_dataset: 32,873 rows (3.52 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 12:28:25,415 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:28:25,415 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:28:25,415 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:28:25,416 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:28:25,416 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:28:25,433 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:28:25,433 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:28:29,836 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 12:28:29,836 - INFO - ✅ Successfully transferred: olist_order_items_dataset
+2025-08-22 12:28:29,836 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 12:28:29,836 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 12:28:29,862 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:28:29,862 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:28:29,862 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 12:28:29,862 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:28:29,862 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:28:29,879 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:28:29,879 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:28:33,424 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:28:33,424 - INFO - ✅ Successfully transferred: olist_customers_dataset
+2025-08-22 12:28:33,424 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 12:28:33,424 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 12:28:33,537 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:28:33,537 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:28:33,537 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 12:28:33,538 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:28:33,538 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:28:33,585 - INFO - 📊 Total rows to transfer: 99,441
+2025-08-22 12:28:33,585 - INFO - 📦 Processing chunk: 0 to 10,000
+2025-08-22 12:28:37,695 - INFO -    📈 Progress: 10,000/99,441 rows (10.1%)
+2025-08-22 12:28:37,695 - INFO - 📦 Processing chunk: 10,000 to 20,000
+2025-08-22 12:28:42,110 - INFO -    📈 Progress: 20,000/99,441 rows (20.1%)
+2025-08-22 12:28:42,110 - INFO - 📦 Processing chunk: 20,000 to 30,000
+2025-08-22 12:28:46,673 - INFO -    📈 Progress: 30,000/99,441 rows (30.2%)
+2025-08-22 12:28:46,673 - INFO - 📦 Processing chunk: 30,000 to 40,000
+2025-08-22 12:28:51,941 - INFO -    📈 Progress: 40,000/99,441 rows (40.2%)
+2025-08-22 12:28:51,941 - INFO - 📦 Processing chunk: 40,000 to 50,000
+2025-08-22 12:28:56,345 - INFO -    📈 Progress: 50,000/99,441 rows (50.3%)
+2025-08-22 12:28:56,345 - INFO - 📦 Processing chunk: 50,000 to 60,000
+2025-08-22 12:29:02,231 - INFO -    📈 Progress: 60,000/99,441 rows (60.3%)
+2025-08-22 12:29:02,231 - INFO - 📦 Processing chunk: 60,000 to 70,000
+2025-08-22 12:29:07,915 - INFO -    📈 Progress: 70,000/99,441 rows (70.4%)
+2025-08-22 12:29:07,916 - INFO - 📦 Processing chunk: 70,000 to 80,000
+2025-08-22 12:29:12,321 - INFO -    📈 Progress: 80,000/99,441 rows (80.4%)
+2025-08-22 12:29:12,321 - INFO - 📦 Processing chunk: 80,000 to 90,000
+2025-08-22 12:29:20,410 - INFO -    📈 Progress: 90,000/99,441 rows (90.5%)
+2025-08-22 12:29:20,410 - INFO - 📦 Processing chunk: 90,000 to 99,441
+2025-08-22 12:29:25,017 - INFO -    📈 Progress: 99,441/99,441 rows (100.0%)
+2025-08-22 12:29:26,553 - INFO - ✅ Transfer complete for olist_orders_dataset
+2025-08-22 12:29:26,553 - INFO -    📊 MySQL rows: 99,441
+2025-08-22 12:29:26,553 - INFO -    📊 BigQuery rows: 99,441
+2025-08-22 12:29:26,553 - INFO -    ✅ Match: Yes
+2025-08-22 12:29:26,553 - INFO - ✅ Successfully transferred: olist_orders_dataset
+2025-08-22 12:29:26,553 - INFO - 🗑️ Starting RDS data deletion for: olist_orders_dataset
+2025-08-22 12:29:26,553 - INFO - 🗑️ Deleting RDS data for table: olist_orders_dataset
+2025-08-22 12:29:26,573 - INFO - 📊 Rows to delete: 99,441
+2025-08-22 12:29:27,087 - INFO - ✅ Successfully deleted 99,441 rows from olist_orders_dataset
+2025-08-22 12:29:27,102 - INFO - ✅ Verification: Table olist_orders_dataset is now empty
+2025-08-22 12:29:27,108 - INFO - ✅ Successfully deleted RDS data: olist_orders_dataset
+2025-08-22 12:29:27,109 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 12:29:27,109 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 12:29:27,154 - INFO - 📊 Total rows to transfer: 99,224
+2025-08-22 12:29:27,154 - INFO - 📦 Processing chunk: 0 to 10,000
+2025-08-22 12:29:30,985 - INFO -    📈 Progress: 10,000/99,224 rows (10.1%)
+2025-08-22 12:29:30,985 - INFO - 📦 Processing chunk: 10,000 to 20,000
+2025-08-22 12:29:35,845 - INFO -    📈 Progress: 20,000/99,224 rows (20.2%)
+2025-08-22 12:29:35,845 - INFO - 📦 Processing chunk: 20,000 to 30,000
+2025-08-22 12:29:40,685 - INFO -    📈 Progress: 30,000/99,224 rows (30.2%)
+2025-08-22 12:29:40,685 - INFO - 📦 Processing chunk: 30,000 to 40,000
+2025-08-22 12:29:46,066 - INFO -    📈 Progress: 40,000/99,224 rows (40.3%)
+2025-08-22 12:29:46,066 - INFO - 📦 Processing chunk: 40,000 to 50,000
+2025-08-22 12:29:51,557 - INFO -    📈 Progress: 50,000/99,224 rows (50.4%)
+2025-08-22 12:29:51,557 - INFO - 📦 Processing chunk: 50,000 to 60,000
+2025-08-22 12:29:56,248 - INFO -    📈 Progress: 60,000/99,224 rows (60.5%)
+2025-08-22 12:29:56,248 - INFO - 📦 Processing chunk: 60,000 to 70,000
+2025-08-22 12:30:01,677 - INFO -    📈 Progress: 70,000/99,224 rows (70.5%)
+2025-08-22 12:30:01,677 - INFO - 📦 Processing chunk: 70,000 to 80,000
+2025-08-22 12:30:06,457 - INFO -    📈 Progress: 80,000/99,224 rows (80.6%)
+2025-08-22 12:30:06,457 - INFO - 📦 Processing chunk: 80,000 to 90,000
+2025-08-22 12:30:10,483 - INFO -    📈 Progress: 90,000/99,224 rows (90.7%)
+2025-08-22 12:30:10,484 - INFO - 📦 Processing chunk: 90,000 to 99,224
+2025-08-22 12:30:16,218 - INFO -    📈 Progress: 99,224/99,224 rows (100.0%)
+2025-08-22 12:30:17,757 - INFO - ✅ Transfer complete for olist_order_reviews_dataset
+2025-08-22 12:30:17,757 - INFO -    📊 MySQL rows: 99,224
+2025-08-22 12:30:17,757 - INFO -    📊 BigQuery rows: 99,224
+2025-08-22 12:30:17,757 - INFO -    ✅ Match: Yes
+2025-08-22 12:30:17,757 - INFO - ✅ Successfully transferred: olist_order_reviews_dataset
+2025-08-22 12:30:17,757 - INFO - 🗑️ Starting RDS data deletion for: olist_order_reviews_dataset
+2025-08-22 12:30:17,757 - INFO - 🗑️ Deleting RDS data for table: olist_order_reviews_dataset
+2025-08-22 12:30:17,809 - INFO - 📊 Rows to delete: 99,224
+2025-08-22 12:30:18,476 - INFO - ✅ Successfully deleted 99,224 rows from olist_order_reviews_dataset
+2025-08-22 12:30:18,515 - INFO - ✅ Verification: Table olist_order_reviews_dataset is now empty
+2025-08-22 12:30:18,521 - INFO - ✅ Successfully deleted RDS data: olist_order_reviews_dataset
+2025-08-22 12:30:18,521 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 12:30:18,521 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 12:30:18,594 - INFO - 📊 Total rows to transfer: 32,951
+2025-08-22 12:30:18,595 - INFO - 📦 Processing chunk: 0 to 10,000
+2025-08-22 12:30:22,466 - INFO -    📈 Progress: 10,000/32,951 rows (30.3%)
+2025-08-22 12:30:22,466 - INFO - 📦 Processing chunk: 10,000 to 20,000
+2025-08-22 12:30:27,690 - INFO -    📈 Progress: 20,000/32,951 rows (60.7%)
+2025-08-22 12:30:27,690 - INFO - 📦 Processing chunk: 20,000 to 30,000
+2025-08-22 12:30:31,988 - INFO -    📈 Progress: 30,000/32,951 rows (91.0%)
+2025-08-22 12:30:31,988 - INFO - 📦 Processing chunk: 30,000 to 32,951
+2025-08-22 12:30:37,005 - INFO -    📈 Progress: 32,951/32,951 rows (100.0%)
+2025-08-22 12:30:38,457 - INFO - ✅ Transfer complete for olist_products_dataset
+2025-08-22 12:30:38,458 - INFO -    📊 MySQL rows: 32,951
+2025-08-22 12:30:38,458 - INFO -    📊 BigQuery rows: 32,951
+2025-08-22 12:30:38,458 - INFO -    ✅ Match: Yes
+2025-08-22 12:30:38,458 - INFO - ✅ Successfully transferred: olist_products_dataset
+2025-08-22 12:30:38,458 - INFO - 🗑️ Starting RDS data deletion for: olist_products_dataset
+2025-08-22 12:30:38,458 - INFO - 🗑️ Deleting RDS data for table: olist_products_dataset
+2025-08-22 12:30:38,496 - INFO - 📊 Rows to delete: 32,951
+2025-08-22 12:30:38,691 - INFO - ✅ Successfully deleted 32,951 rows from olist_products_dataset
+2025-08-22 12:30:38,703 - INFO - ✅ Verification: Table olist_products_dataset is now empty
+2025-08-22 12:30:38,708 - INFO - ✅ Successfully deleted RDS data: olist_products_dataset
+2025-08-22 12:30:38,709 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 12:30:38,709 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 12:30:38,728 - INFO - 📊 Total rows to transfer: 3,095
+2025-08-22 12:30:38,728 - INFO - 📦 Processing chunk: 0 to 3,095
+2025-08-22 12:30:42,947 - INFO -    📈 Progress: 3,095/3,095 rows (100.0%)
+2025-08-22 12:30:44,481 - INFO - ✅ Transfer complete for olist_sellers_dataset
+2025-08-22 12:30:44,481 - INFO -    📊 MySQL rows: 3,095
+2025-08-22 12:30:44,481 - INFO -    📊 BigQuery rows: 3,095
+2025-08-22 12:30:44,481 - INFO -    ✅ Match: Yes
+2025-08-22 12:30:44,481 - INFO - ✅ Successfully transferred: olist_sellers_dataset
+2025-08-22 12:30:44,481 - INFO - 🗑️ Starting RDS data deletion for: olist_sellers_dataset
+2025-08-22 12:30:44,481 - INFO - 🗑️ Deleting RDS data for table: olist_sellers_dataset
+2025-08-22 12:30:44,495 - INFO - 📊 Rows to delete: 3,095
+2025-08-22 12:30:44,522 - INFO - ✅ Successfully deleted 3,095 rows from olist_sellers_dataset
+2025-08-22 12:30:44,533 - INFO - ✅ Verification: Table olist_sellers_dataset is now empty
+2025-08-22 12:30:44,539 - INFO - ✅ Successfully deleted RDS data: olist_sellers_dataset
+2025-08-22 12:30:44,539 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 12:30:44,539 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 12:30:44,556 - INFO - 📊 Total rows to transfer: 71
+2025-08-22 12:30:44,556 - INFO - 📦 Processing chunk: 0 to 71
+2025-08-22 12:30:47,758 - INFO -    📈 Progress: 71/71 rows (100.0%)
+2025-08-22 12:30:49,046 - INFO - ✅ Transfer complete for product_category_name_translation
+2025-08-22 12:30:49,046 - INFO -    📊 MySQL rows: 71
+2025-08-22 12:30:49,047 - INFO -    📊 BigQuery rows: 71
+2025-08-22 12:30:49,047 - INFO -    ✅ Match: Yes
+2025-08-22 12:30:49,047 - INFO - ✅ Successfully transferred: product_category_name_translation
+2025-08-22 12:30:49,047 - INFO - 🗑️ Starting RDS data deletion for: product_category_name_translation
+2025-08-22 12:30:49,047 - INFO - 🗑️ Deleting RDS data for table: product_category_name_translation
+2025-08-22 12:30:49,060 - INFO - 📊 Rows to delete: 71
+2025-08-22 12:30:49,077 - INFO - ✅ Successfully deleted 71 rows from product_category_name_translation
+2025-08-22 12:30:49,084 - INFO - ✅ Verification: Table product_category_name_translation is now empty
+2025-08-22 12:30:49,090 - INFO - ✅ Successfully deleted RDS data: product_category_name_translation
+2025-08-22 12:30:49,090 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 12:30:49,090 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 12:30:49,106 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:30:49,106 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:30:53,034 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 12:30:53,034 - INFO - ✅ Successfully transferred: olist_geolocation_dataset
+2025-08-22 12:30:53,034 - INFO - 🗑️ Starting RDS data deletion for: olist_geolocation_dataset
+2025-08-22 12:30:53,034 - INFO - 🗑️ Deleting RDS data for table: olist_geolocation_dataset
+2025-08-22 12:30:53,047 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:30:53,047 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:30:53,047 - INFO - ✅ Successfully deleted RDS data: olist_geolocation_dataset
+2025-08-22 12:30:53,047 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 12:30:53,047 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 12:30:53,063 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:30:53,064 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:30:58,824 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 12:30:58,824 - INFO - ✅ Successfully transferred: olist_order_payments_dataset
+2025-08-22 12:30:58,824 - INFO - 🗑️ Starting RDS data deletion for: olist_order_payments_dataset
+2025-08-22 12:30:58,824 - INFO - 🗑️ Deleting RDS data for table: olist_order_payments_dataset
+2025-08-22 12:30:58,838 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:30:58,838 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:30:58,838 - INFO - ✅ Successfully deleted RDS data: olist_order_payments_dataset
+2025-08-22 12:30:58,838 - INFO - ============================================================
+2025-08-22 12:30:58,838 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 12:30:58,838 - INFO -    Total tables: 9
+2025-08-22 12:30:58,838 - INFO -    Successful transfers: 9
+2025-08-22 12:30:58,838 - INFO -    Failed transfers: 0
+2025-08-22 12:30:58,838 - INFO -    Successful deletions: 9
+2025-08-22 12:30:58,838 - INFO -    Failed deletions: 0
+2025-08-22 12:30:58,839 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:30:58,839 - INFO -    Duration: 0:02:36.096908
+2025-08-22 12:30:58,839 - INFO - ============================================================
+2025-08-22 12:30:58,839 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
+2025-08-22 12:41:11,100 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:41:11.100407
+2025-08-22 12:41:11,101 - INFO - 🎯 Transferring all tables
+2025-08-22 12:41:11,101 - INFO - ============================================================
+2025-08-22 12:41:11,101 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:41:11,101 - INFO - ============================================================
+2025-08-22 12:41:11,101 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:41:11,254 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:41:11,254 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:41:12,867 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:41:12,867 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:41:13,684 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:41:13,685 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:41:13,735 - INFO - 📋 Found 9 tables:
+2025-08-22 12:41:13,735 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_orders_dataset: 98,155 rows (21.55 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_order_reviews_dataset: 97,240 rows (17.55 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_products_dataset: 32,873 rows (3.52 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 12:41:13,736 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:41:13,736 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:41:13,736 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:41:13,737 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:41:13,737 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:41:13,750 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:13,750 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:17,269 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 12:41:17,269 - INFO - ✅ Successfully transferred: olist_order_items_dataset
+2025-08-22 12:41:17,269 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 12:41:17,269 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 12:41:17,283 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:17,283 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:17,283 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 12:41:17,283 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:41:17,284 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:41:17,296 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:17,296 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:20,546 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:41:20,546 - INFO - ✅ Successfully transferred: olist_customers_dataset
+2025-08-22 12:41:20,546 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 12:41:20,546 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 12:41:20,558 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:20,559 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:20,559 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 12:41:20,559 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:41:20,559 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:41:20,574 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:20,574 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:24,786 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_orders_dataset
+2025-08-22 12:41:24,786 - INFO - ✅ Successfully transferred: olist_orders_dataset
+2025-08-22 12:41:24,786 - INFO - 🗑️ Starting RDS data deletion for: olist_orders_dataset
+2025-08-22 12:41:24,786 - INFO - 🗑️ Deleting RDS data for table: olist_orders_dataset
+2025-08-22 12:41:24,808 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:24,808 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:24,808 - INFO - ✅ Successfully deleted RDS data: olist_orders_dataset
+2025-08-22 12:41:24,808 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 12:41:24,808 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 12:41:24,824 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:24,824 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:28,021 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_reviews_dataset
+2025-08-22 12:41:28,021 - INFO - ✅ Successfully transferred: olist_order_reviews_dataset
+2025-08-22 12:41:28,021 - INFO - 🗑️ Starting RDS data deletion for: olist_order_reviews_dataset
+2025-08-22 12:41:28,021 - INFO - 🗑️ Deleting RDS data for table: olist_order_reviews_dataset
+2025-08-22 12:41:28,035 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:28,036 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:28,036 - INFO - ✅ Successfully deleted RDS data: olist_order_reviews_dataset
+2025-08-22 12:41:28,036 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 12:41:28,036 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 12:41:28,048 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:28,048 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:31,810 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_products_dataset
+2025-08-22 12:41:31,810 - INFO - ✅ Successfully transferred: olist_products_dataset
+2025-08-22 12:41:31,810 - INFO - 🗑️ Starting RDS data deletion for: olist_products_dataset
+2025-08-22 12:41:31,810 - INFO - 🗑️ Deleting RDS data for table: olist_products_dataset
+2025-08-22 12:41:31,824 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:31,824 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:31,824 - INFO - ✅ Successfully deleted RDS data: olist_products_dataset
+2025-08-22 12:41:31,824 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 12:41:31,824 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 12:41:31,836 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:31,836 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:36,418 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_sellers_dataset
+2025-08-22 12:41:36,419 - INFO - ✅ Successfully transferred: olist_sellers_dataset
+2025-08-22 12:41:36,419 - INFO - 🗑️ Starting RDS data deletion for: olist_sellers_dataset
+2025-08-22 12:41:36,419 - INFO - 🗑️ Deleting RDS data for table: olist_sellers_dataset
+2025-08-22 12:41:36,431 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:36,431 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:36,431 - INFO - ✅ Successfully deleted RDS data: olist_sellers_dataset
+2025-08-22 12:41:36,431 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 12:41:36,431 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 12:41:36,445 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:36,445 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:41,846 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.product_category_name_translation
+2025-08-22 12:41:41,846 - INFO - ✅ Successfully transferred: product_category_name_translation
+2025-08-22 12:41:41,846 - INFO - 🗑️ Starting RDS data deletion for: product_category_name_translation
+2025-08-22 12:41:41,846 - INFO - 🗑️ Deleting RDS data for table: product_category_name_translation
+2025-08-22 12:41:41,862 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:41,862 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:41,862 - INFO - ✅ Successfully deleted RDS data: product_category_name_translation
+2025-08-22 12:41:41,863 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 12:41:41,863 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 12:41:41,877 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:41,877 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:45,861 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 12:41:45,861 - INFO - ✅ Successfully transferred: olist_geolocation_dataset
+2025-08-22 12:41:45,861 - INFO - 🗑️ Starting RDS data deletion for: olist_geolocation_dataset
+2025-08-22 12:41:45,861 - INFO - 🗑️ Deleting RDS data for table: olist_geolocation_dataset
+2025-08-22 12:41:45,876 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:45,876 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:45,876 - INFO - ✅ Successfully deleted RDS data: olist_geolocation_dataset
+2025-08-22 12:41:45,876 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 12:41:45,876 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 12:41:45,891 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:41:45,891 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:41:49,731 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 12:41:49,731 - INFO - ✅ Successfully transferred: olist_order_payments_dataset
+2025-08-22 12:41:49,731 - INFO - 🗑️ Starting RDS data deletion for: olist_order_payments_dataset
+2025-08-22 12:41:49,731 - INFO - 🗑️ Deleting RDS data for table: olist_order_payments_dataset
+2025-08-22 12:41:49,743 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:41:49,743 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:41:49,744 - INFO - ✅ Successfully deleted RDS data: olist_order_payments_dataset
+2025-08-22 12:41:49,744 - INFO - ============================================================
+2025-08-22 12:41:49,744 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 12:41:49,744 - INFO -    Total tables: 9
+2025-08-22 12:41:49,744 - INFO -    Successful transfers: 9
+2025-08-22 12:41:49,744 - INFO -    Failed transfers: 0
+2025-08-22 12:41:49,744 - INFO -    Successful deletions: 9
+2025-08-22 12:41:49,744 - INFO -    Failed deletions: 0
+2025-08-22 12:41:49,744 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:41:49,744 - INFO -    Duration: 0:00:38.643661
+2025-08-22 12:41:49,744 - INFO - ============================================================
+2025-08-22 12:41:49,744 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
+2025-08-22 12:46:22,395 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:46:22.395115
+2025-08-22 12:46:22,395 - INFO - 🎯 Transferring all tables
+2025-08-22 12:46:22,395 - INFO - ============================================================
+2025-08-22 12:46:22,396 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:46:22,396 - INFO - ============================================================
+2025-08-22 12:46:22,396 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:46:22,548 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:46:22,549 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:46:24,273 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:46:24,273 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:46:25,092 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:46:25,092 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:46:25,135 - INFO - 📋 Found 9 tables:
+2025-08-22 12:46:25,135 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_orders_dataset: 98,290 rows (21.55 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_order_reviews_dataset: 98,068 rows (17.55 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_products_dataset: 31,989 rows (3.52 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 12:46:25,136 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:46:25,136 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:46:25,136 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:46:25,136 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:46:25,137 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:46:25,151 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:46:25,151 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:46:28,732 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 12:46:28,732 - INFO - ✅ Successfully transferred: olist_order_items_dataset
+2025-08-22 12:46:28,732 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 12:46:28,732 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 12:46:28,746 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:46:28,746 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:46:28,746 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 12:46:28,746 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:46:28,746 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:46:28,759 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:46:28,759 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:46:32,670 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:46:32,670 - INFO - ✅ Successfully transferred: olist_customers_dataset
+2025-08-22 12:46:32,670 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 12:46:32,670 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 12:46:32,684 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:46:32,684 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:46:32,684 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 12:46:32,684 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:46:32,684 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:46:32,714 - INFO - 📊 Total rows to transfer: 99,441
+2025-08-22 12:46:32,714 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 12:46:32,714 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 12:46:32,714 - INFO - 📦 Processing large chunk: 0 to 99,441
+2025-08-22 12:46:42,730 - INFO -    🚀 Fast progress: 99,441/99,441 rows (100.0%)
+2025-08-22 12:46:43,960 - INFO - ✅ Optimized transfer complete for olist_orders_dataset
+2025-08-22 12:46:43,960 - INFO -    📊 MySQL rows: 99,441
+2025-08-22 12:46:43,960 - INFO -    📊 BigQuery rows: 99,441
+2025-08-22 12:46:43,960 - INFO -    ✅ Match: Yes
+2025-08-22 12:46:43,960 - INFO - ✅ Successfully transferred: olist_orders_dataset
+2025-08-22 12:46:43,960 - INFO - 🗑️ Starting RDS data deletion for: olist_orders_dataset
+2025-08-22 12:46:43,961 - INFO - 🗑️ Deleting RDS data for table: olist_orders_dataset
+2025-08-22 12:46:43,983 - INFO - 📊 Rows to delete: 99,441
+2025-08-22 12:46:44,557 - INFO - ✅ Successfully deleted 99,441 rows from olist_orders_dataset
+2025-08-22 12:46:44,571 - INFO - ✅ Verification: Table olist_orders_dataset is now empty
+2025-08-22 12:46:44,576 - INFO - ✅ Successfully deleted RDS data: olist_orders_dataset
+2025-08-22 12:46:44,576 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 12:46:44,576 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 12:46:44,594 - INFO - 📊 Total rows to transfer: 99,224
+2025-08-22 12:46:44,594 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 12:46:44,594 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 12:46:44,594 - INFO - 📦 Processing large chunk: 0 to 99,224
+2025-08-22 12:46:53,253 - INFO -    🚀 Fast progress: 99,224/99,224 rows (100.0%)
+2025-08-22 12:46:54,514 - INFO - ✅ Optimized transfer complete for olist_order_reviews_dataset
+2025-08-22 12:46:54,514 - INFO -    📊 MySQL rows: 99,224
+2025-08-22 12:46:54,514 - INFO -    📊 BigQuery rows: 99,224
+2025-08-22 12:46:54,514 - INFO -    ✅ Match: Yes
+2025-08-22 12:46:54,514 - INFO - ✅ Successfully transferred: olist_order_reviews_dataset
+2025-08-22 12:46:54,514 - INFO - 🗑️ Starting RDS data deletion for: olist_order_reviews_dataset
+2025-08-22 12:46:54,515 - INFO - 🗑️ Deleting RDS data for table: olist_order_reviews_dataset
+2025-08-22 12:46:54,661 - INFO - 📊 Rows to delete: 99,224
+2025-08-22 12:46:55,144 - INFO - ✅ Successfully deleted 99,224 rows from olist_order_reviews_dataset
+2025-08-22 12:46:55,165 - INFO - ✅ Verification: Table olist_order_reviews_dataset is now empty
+2025-08-22 12:46:55,172 - INFO - ✅ Successfully deleted RDS data: olist_order_reviews_dataset
+2025-08-22 12:46:55,172 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 12:46:55,173 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 12:46:55,198 - INFO - 📊 Total rows to transfer: 32,951
+2025-08-22 12:46:55,198 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:46:55,198 - INFO - 📦 Processing chunk: 0 to 32,951
+2025-08-22 12:46:59,810 - INFO -    📈 Progress: 32,951/32,951 rows (100.0%)
+2025-08-22 12:47:01,035 - INFO - ✅ Transfer complete for olist_products_dataset
+2025-08-22 12:47:01,035 - INFO -    📊 MySQL rows: 32,951
+2025-08-22 12:47:01,035 - INFO -    📊 BigQuery rows: 32,951
+2025-08-22 12:47:01,035 - INFO -    ✅ Match: Yes
+2025-08-22 12:47:01,035 - INFO - ✅ Successfully transferred: olist_products_dataset
+2025-08-22 12:47:01,035 - INFO - 🗑️ Starting RDS data deletion for: olist_products_dataset
+2025-08-22 12:47:01,035 - INFO - 🗑️ Deleting RDS data for table: olist_products_dataset
+2025-08-22 12:47:01,183 - INFO - 📊 Rows to delete: 32,951
+2025-08-22 12:47:01,360 - INFO - ✅ Successfully deleted 32,951 rows from olist_products_dataset
+2025-08-22 12:47:01,396 - INFO - ✅ Verification: Table olist_products_dataset is now empty
+2025-08-22 12:47:01,403 - INFO - ✅ Successfully deleted RDS data: olist_products_dataset
+2025-08-22 12:47:01,403 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 12:47:01,403 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 12:47:01,445 - INFO - 📊 Total rows to transfer: 3,095
+2025-08-22 12:47:01,445 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:47:01,445 - INFO - 📦 Processing chunk: 0 to 3,095
+2025-08-22 12:47:05,235 - INFO -    📈 Progress: 3,095/3,095 rows (100.0%)
+2025-08-22 12:47:06,769 - INFO - ✅ Transfer complete for olist_sellers_dataset
+2025-08-22 12:47:06,769 - INFO -    📊 MySQL rows: 3,095
+2025-08-22 12:47:06,769 - INFO -    📊 BigQuery rows: 3,095
+2025-08-22 12:47:06,770 - INFO -    ✅ Match: Yes
+2025-08-22 12:47:06,770 - INFO - ✅ Successfully transferred: olist_sellers_dataset
+2025-08-22 12:47:06,770 - INFO - 🗑️ Starting RDS data deletion for: olist_sellers_dataset
+2025-08-22 12:47:06,770 - INFO - 🗑️ Deleting RDS data for table: olist_sellers_dataset
+2025-08-22 12:47:06,787 - INFO - 📊 Rows to delete: 3,095
+2025-08-22 12:47:06,824 - INFO - ✅ Successfully deleted 3,095 rows from olist_sellers_dataset
+2025-08-22 12:47:06,854 - INFO - ✅ Verification: Table olist_sellers_dataset is now empty
+2025-08-22 12:47:06,865 - INFO - ✅ Successfully deleted RDS data: olist_sellers_dataset
+2025-08-22 12:47:06,865 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 12:47:06,865 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 12:47:06,902 - INFO - 📊 Total rows to transfer: 71
+2025-08-22 12:47:06,902 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:47:06,902 - INFO - 📦 Processing chunk: 0 to 71
+2025-08-22 12:47:10,558 - INFO -    📈 Progress: 71/71 rows (100.0%)
+2025-08-22 12:47:11,990 - INFO - ✅ Transfer complete for product_category_name_translation
+2025-08-22 12:47:11,990 - INFO -    📊 MySQL rows: 71
+2025-08-22 12:47:11,991 - INFO -    📊 BigQuery rows: 71
+2025-08-22 12:47:11,991 - INFO -    ✅ Match: Yes
+2025-08-22 12:47:11,991 - INFO - ✅ Successfully transferred: product_category_name_translation
+2025-08-22 12:47:11,991 - INFO - 🗑️ Starting RDS data deletion for: product_category_name_translation
+2025-08-22 12:47:11,991 - INFO - 🗑️ Deleting RDS data for table: product_category_name_translation
+2025-08-22 12:47:12,004 - INFO - 📊 Rows to delete: 71
+2025-08-22 12:47:12,018 - INFO - ✅ Successfully deleted 71 rows from product_category_name_translation
+2025-08-22 12:47:12,024 - INFO - ✅ Verification: Table product_category_name_translation is now empty
+2025-08-22 12:47:12,031 - INFO - ✅ Successfully deleted RDS data: product_category_name_translation
+2025-08-22 12:47:12,031 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 12:47:12,031 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 12:47:12,050 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:47:12,050 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:47:15,649 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 12:47:15,649 - INFO - ✅ Successfully transferred: olist_geolocation_dataset
+2025-08-22 12:47:15,649 - INFO - 🗑️ Starting RDS data deletion for: olist_geolocation_dataset
+2025-08-22 12:47:15,649 - INFO - 🗑️ Deleting RDS data for table: olist_geolocation_dataset
+2025-08-22 12:47:15,667 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:47:15,667 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:47:15,667 - INFO - ✅ Successfully deleted RDS data: olist_geolocation_dataset
+2025-08-22 12:47:15,667 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 12:47:15,667 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 12:47:15,685 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:47:15,685 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:47:20,072 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 12:47:20,073 - INFO - ✅ Successfully transferred: olist_order_payments_dataset
+2025-08-22 12:47:20,074 - INFO - 🗑️ Starting RDS data deletion for: olist_order_payments_dataset
+2025-08-22 12:47:20,074 - INFO - 🗑️ Deleting RDS data for table: olist_order_payments_dataset
+2025-08-22 12:47:20,090 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:47:20,090 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:47:20,090 - INFO - ✅ Successfully deleted RDS data: olist_order_payments_dataset
+2025-08-22 12:47:20,090 - INFO - ============================================================
+2025-08-22 12:47:20,090 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 12:47:20,090 - INFO -    Total tables: 9
+2025-08-22 12:47:20,090 - INFO -    Successful transfers: 9
+2025-08-22 12:47:20,091 - INFO -    Failed transfers: 0
+2025-08-22 12:47:20,091 - INFO -    Successful deletions: 9
+2025-08-22 12:47:20,091 - INFO -    Failed deletions: 0
+2025-08-22 12:47:20,091 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:47:20,091 - INFO -    Duration: 0:00:57.695605
+2025-08-22 12:47:20,091 - INFO - ============================================================
+2025-08-22 12:47:20,092 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
+2025-08-22 12:52:51,410 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:52:51.410568
+2025-08-22 12:52:51,411 - INFO - 🎯 Transferring all tables
+2025-08-22 12:52:51,411 - INFO - ============================================================
+2025-08-22 12:52:51,411 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:52:51,411 - INFO - ============================================================
+2025-08-22 12:52:51,411 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:52:51,562 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:52:51,562 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:52:52,967 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:52:52,967 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:52:53,678 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:52:53,678 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:52:53,719 - INFO - 📋 Found 9 tables:
+2025-08-22 12:52:53,720 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_order_reviews_dataset: 98,676 rows (17.55 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_orders_dataset: 98,290 rows (21.55 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_products_dataset: 32,796 rows (3.52 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 12:52:53,720 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:52:53,720 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:52:53,721 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:52:53,721 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:52:53,721 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:52:53,732 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:52:53,732 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:52:57,247 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 12:52:57,247 - INFO - ✅ Successfully transferred: olist_order_items_dataset
+2025-08-22 12:52:57,247 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 12:52:57,247 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 12:52:57,266 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:52:57,266 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:52:57,266 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 12:52:57,266 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:52:57,266 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:52:57,281 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:52:57,281 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:53:01,681 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:53:01,682 - INFO - ✅ Successfully transferred: olist_customers_dataset
+2025-08-22 12:53:01,682 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 12:53:01,682 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 12:53:01,742 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:53:01,742 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:53:01,742 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 12:53:01,742 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 12:53:01,742 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 12:53:01,773 - INFO - 📊 Total rows to transfer: 99,224
+2025-08-22 12:53:01,773 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 12:53:01,773 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 12:53:01,773 - INFO - 📦 Processing large chunk: 0 to 99,224
+2025-08-22 12:53:12,630 - INFO -    🚀 Fast progress: 99,224/99,224 rows (100.0%)
+2025-08-22 12:53:14,164 - INFO - ✅ Optimized transfer complete for olist_order_reviews_dataset
+2025-08-22 12:53:14,164 - INFO -    📊 MySQL rows: 99,224
+2025-08-22 12:53:14,164 - INFO -    📊 BigQuery rows: 99,224
+2025-08-22 12:53:14,164 - INFO -    ✅ Match: Yes
+2025-08-22 12:53:14,164 - INFO - ✅ Successfully transferred: olist_order_reviews_dataset
+2025-08-22 12:53:14,164 - INFO - 🗑️ Starting RDS data deletion for: olist_order_reviews_dataset
+2025-08-22 12:53:14,164 - INFO - 🗑️ Deleting RDS data for table: olist_order_reviews_dataset
+2025-08-22 12:53:14,185 - INFO - 📊 Rows to delete: 99,224
+2025-08-22 12:53:14,787 - INFO - ✅ Successfully deleted 99,224 rows from olist_order_reviews_dataset
+2025-08-22 12:53:14,804 - INFO - ✅ Verification: Table olist_order_reviews_dataset is now empty
+2025-08-22 12:53:14,810 - INFO - ✅ Successfully deleted RDS data: olist_order_reviews_dataset
+2025-08-22 12:53:14,810 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:53:14,810 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:53:14,855 - INFO - 📊 Total rows to transfer: 99,441
+2025-08-22 12:53:14,855 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 12:53:14,855 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 12:53:14,855 - INFO - 📦 Processing large chunk: 0 to 99,441
+2025-08-22 12:53:22,869 - INFO -    🚀 Fast progress: 99,441/99,441 rows (100.0%)
+2025-08-22 12:53:24,092 - INFO - ✅ Optimized transfer complete for olist_orders_dataset
+2025-08-22 12:53:24,092 - INFO -    📊 MySQL rows: 99,441
+2025-08-22 12:53:24,092 - INFO -    📊 BigQuery rows: 99,441
+2025-08-22 12:53:24,092 - INFO -    ✅ Match: Yes
+2025-08-22 12:53:24,092 - INFO - ✅ Successfully transferred: olist_orders_dataset
+2025-08-22 12:53:24,093 - INFO - 🗑️ Starting RDS data deletion for: olist_orders_dataset
+2025-08-22 12:53:24,093 - INFO - 🗑️ Deleting RDS data for table: olist_orders_dataset
+2025-08-22 12:53:24,251 - INFO - 📊 Rows to delete: 99,441
+2025-08-22 12:53:24,766 - INFO - ✅ Successfully deleted 99,441 rows from olist_orders_dataset
+2025-08-22 12:53:24,809 - INFO - ✅ Verification: Table olist_orders_dataset is now empty
+2025-08-22 12:53:24,816 - INFO - ✅ Successfully deleted RDS data: olist_orders_dataset
+2025-08-22 12:53:24,817 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 12:53:24,817 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 12:53:24,861 - INFO - 📊 Total rows to transfer: 32,951
+2025-08-22 12:53:24,861 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:53:24,861 - INFO - 📦 Processing chunk: 0 to 32,951
+2025-08-22 12:53:30,944 - INFO -    📈 Progress: 32,951/32,951 rows (100.0%)
+2025-08-22 12:53:32,393 - INFO - ✅ Transfer complete for olist_products_dataset
+2025-08-22 12:53:32,394 - INFO -    📊 MySQL rows: 32,951
+2025-08-22 12:53:32,394 - INFO -    📊 BigQuery rows: 32,951
+2025-08-22 12:53:32,394 - INFO -    ✅ Match: Yes
+2025-08-22 12:53:32,394 - INFO - ✅ Successfully transferred: olist_products_dataset
+2025-08-22 12:53:32,394 - INFO - 🗑️ Starting RDS data deletion for: olist_products_dataset
+2025-08-22 12:53:32,394 - INFO - 🗑️ Deleting RDS data for table: olist_products_dataset
+2025-08-22 12:53:32,469 - INFO - 📊 Rows to delete: 32,951
+2025-08-22 12:53:32,641 - INFO - ✅ Successfully deleted 32,951 rows from olist_products_dataset
+2025-08-22 12:53:32,674 - INFO - ✅ Verification: Table olist_products_dataset is now empty
+2025-08-22 12:53:32,681 - INFO - ✅ Successfully deleted RDS data: olist_products_dataset
+2025-08-22 12:53:32,681 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 12:53:32,681 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 12:53:32,716 - INFO - 📊 Total rows to transfer: 3,095
+2025-08-22 12:53:32,717 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:53:32,717 - INFO - 📦 Processing chunk: 0 to 3,095
+2025-08-22 12:53:36,796 - INFO -    📈 Progress: 3,095/3,095 rows (100.0%)
+2025-08-22 12:53:37,988 - INFO - ✅ Transfer complete for olist_sellers_dataset
+2025-08-22 12:53:37,988 - INFO -    📊 MySQL rows: 3,095
+2025-08-22 12:53:37,988 - INFO -    📊 BigQuery rows: 3,095
+2025-08-22 12:53:37,988 - INFO -    ✅ Match: Yes
+2025-08-22 12:53:37,988 - INFO - ✅ Successfully transferred: olist_sellers_dataset
+2025-08-22 12:53:37,988 - INFO - 🗑️ Starting RDS data deletion for: olist_sellers_dataset
+2025-08-22 12:53:37,989 - INFO - 🗑️ Deleting RDS data for table: olist_sellers_dataset
+2025-08-22 12:53:38,003 - INFO - 📊 Rows to delete: 3,095
+2025-08-22 12:53:38,041 - INFO - ✅ Successfully deleted 3,095 rows from olist_sellers_dataset
+2025-08-22 12:53:38,081 - INFO - ✅ Verification: Table olist_sellers_dataset is now empty
+2025-08-22 12:53:38,087 - INFO - ✅ Successfully deleted RDS data: olist_sellers_dataset
+2025-08-22 12:53:38,087 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 12:53:38,087 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 12:53:38,139 - INFO - 📊 Total rows to transfer: 71
+2025-08-22 12:53:38,140 - INFO - 📦 Using chunked transfer method
+2025-08-22 12:53:38,140 - INFO - 📦 Processing chunk: 0 to 71
+2025-08-22 12:53:41,916 - INFO -    📈 Progress: 71/71 rows (100.0%)
+2025-08-22 12:53:43,451 - INFO - ✅ Transfer complete for product_category_name_translation
+2025-08-22 12:53:43,452 - INFO -    📊 MySQL rows: 71
+2025-08-22 12:53:43,452 - INFO -    📊 BigQuery rows: 71
+2025-08-22 12:53:43,452 - INFO -    ✅ Match: Yes
+2025-08-22 12:53:43,452 - INFO - ✅ Successfully transferred: product_category_name_translation
+2025-08-22 12:53:43,452 - INFO - 🗑️ Starting RDS data deletion for: product_category_name_translation
+2025-08-22 12:53:43,452 - INFO - 🗑️ Deleting RDS data for table: product_category_name_translation
+2025-08-22 12:53:43,466 - INFO - 📊 Rows to delete: 71
+2025-08-22 12:53:43,482 - INFO - ✅ Successfully deleted 71 rows from product_category_name_translation
+2025-08-22 12:53:43,489 - INFO - ✅ Verification: Table product_category_name_translation is now empty
+2025-08-22 12:53:43,495 - INFO - ✅ Successfully deleted RDS data: product_category_name_translation
+2025-08-22 12:53:43,496 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 12:53:43,496 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 12:53:43,521 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:53:43,522 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:53:48,470 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 12:53:48,470 - INFO - ✅ Successfully transferred: olist_geolocation_dataset
+2025-08-22 12:53:48,470 - INFO - 🗑️ Starting RDS data deletion for: olist_geolocation_dataset
+2025-08-22 12:53:48,470 - INFO - 🗑️ Deleting RDS data for table: olist_geolocation_dataset
+2025-08-22 12:53:48,483 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:53:48,483 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:53:48,484 - INFO - ✅ Successfully deleted RDS data: olist_geolocation_dataset
+2025-08-22 12:53:48,484 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 12:53:48,484 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 12:53:48,507 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:53:48,507 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:53:51,540 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 12:53:51,541 - INFO - ✅ Successfully transferred: olist_order_payments_dataset
+2025-08-22 12:53:51,541 - INFO - 🗑️ Starting RDS data deletion for: olist_order_payments_dataset
+2025-08-22 12:53:51,541 - INFO - 🗑️ Deleting RDS data for table: olist_order_payments_dataset
+2025-08-22 12:53:51,551 - INFO - 📊 Rows to delete: 0
+2025-08-22 12:53:51,552 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 12:53:51,552 - INFO - ✅ Successfully deleted RDS data: olist_order_payments_dataset
+2025-08-22 12:53:51,552 - INFO - ============================================================
+2025-08-22 12:53:51,552 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 12:53:51,552 - INFO -    Total tables: 9
+2025-08-22 12:53:51,552 - INFO -    Successful transfers: 9
+2025-08-22 12:53:51,552 - INFO -    Failed transfers: 0
+2025-08-22 12:53:51,552 - INFO -    Successful deletions: 9
+2025-08-22 12:53:51,552 - INFO -    Failed deletions: 0
+2025-08-22 12:53:51,552 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:53:51,552 - INFO -    Duration: 0:01:00.141667
+2025-08-22 12:53:51,552 - INFO - ============================================================
+2025-08-22 12:53:51,552 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
+2025-08-22 12:57:10,791 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 12:57:10.790990
+2025-08-22 12:57:10,791 - INFO - 🚫 RDS deletion disabled via --no-delete flag
+2025-08-22 12:57:10,791 - INFO - 🎯 Transferring all tables
+2025-08-22 12:57:10,791 - INFO - ============================================================
+2025-08-22 12:57:10,791 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 12:57:10,791 - INFO - ============================================================
+2025-08-22 12:57:10,791 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 12:57:10,977 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 12:57:10,977 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 12:57:12,766 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 12:57:12,767 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 12:57:13,582 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:57:13,582 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 12:57:13,667 - INFO - 📋 Found 9 tables:
+2025-08-22 12:57:13,667 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_order_reviews_dataset: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_orders_dataset: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_products_dataset: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO -    • olist_sellers_dataset: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO -    • product_category_name_translation: 0 rows (0.02 MB)
+2025-08-22 12:57:13,668 - INFO - 🎯 Transferring 9 tables
+2025-08-22 12:57:13,668 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 12:57:13,699 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 12:57:13,713 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:13,713 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:18,190 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 12:57:18,190 - INFO - ✅ Successfully processed empty table: olist_order_items_dataset
+2025-08-22 12:57:18,190 - INFO - 📋 Skipping RDS deletion (disabled): olist_order_items_dataset
+2025-08-22 12:57:18,190 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 12:57:18,210 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 12:57:18,224 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:18,224 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:22,803 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 12:57:22,803 - INFO - ✅ Successfully processed empty table: olist_customers_dataset
+2025-08-22 12:57:22,803 - INFO - 📋 Skipping RDS deletion (disabled): olist_customers_dataset
+2025-08-22 12:57:22,804 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 12:57:22,820 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 12:57:22,833 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:22,834 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:27,304 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 12:57:27,304 - INFO - ✅ Successfully processed empty table: olist_geolocation_dataset
+2025-08-22 12:57:27,304 - INFO - 📋 Skipping RDS deletion (disabled): olist_geolocation_dataset
+2025-08-22 12:57:27,305 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 12:57:27,320 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 12:57:27,332 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:27,332 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:30,391 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 12:57:30,391 - INFO - ✅ Successfully processed empty table: olist_order_payments_dataset
+2025-08-22 12:57:30,391 - INFO - 📋 Skipping RDS deletion (disabled): olist_order_payments_dataset
+2025-08-22 12:57:30,391 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 12:57:30,410 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 12:57:30,423 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:30,423 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:34,268 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_reviews_dataset
+2025-08-22 12:57:34,268 - INFO - ✅ Successfully processed empty table: olist_order_reviews_dataset
+2025-08-22 12:57:34,268 - INFO - 📋 Skipping RDS deletion (disabled): olist_order_reviews_dataset
+2025-08-22 12:57:34,268 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 12:57:34,290 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 12:57:34,305 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:34,306 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:38,466 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_orders_dataset
+2025-08-22 12:57:38,466 - INFO - ✅ Successfully processed empty table: olist_orders_dataset
+2025-08-22 12:57:38,466 - INFO - 📋 Skipping RDS deletion (disabled): olist_orders_dataset
+2025-08-22 12:57:38,466 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 12:57:38,479 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 12:57:38,496 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:38,496 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:44,006 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_products_dataset
+2025-08-22 12:57:44,006 - INFO - ✅ Successfully processed empty table: olist_products_dataset
+2025-08-22 12:57:44,006 - INFO - 📋 Skipping RDS deletion (disabled): olist_products_dataset
+2025-08-22 12:57:44,006 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 12:57:44,073 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 12:57:44,093 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:44,094 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:48,093 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_sellers_dataset
+2025-08-22 12:57:48,093 - INFO - ✅ Successfully processed empty table: olist_sellers_dataset
+2025-08-22 12:57:48,093 - INFO - 📋 Skipping RDS deletion (disabled): olist_sellers_dataset
+2025-08-22 12:57:48,093 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 12:57:48,108 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 12:57:48,120 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 12:57:48,121 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 12:57:51,296 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.product_category_name_translation
+2025-08-22 12:57:51,296 - INFO - ✅ Successfully processed empty table: product_category_name_translation
+2025-08-22 12:57:51,296 - INFO - 📋 Skipping RDS deletion (disabled): product_category_name_translation
+2025-08-22 12:57:51,296 - INFO - ============================================================
+2025-08-22 12:57:51,297 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 12:57:51,297 - INFO -    Total tables: 9
+2025-08-22 12:57:51,297 - INFO -    Data transfers (rows > 0): 0
+2025-08-22 12:57:51,297 - INFO -    Empty tables processed: 9
+2025-08-22 12:57:51,297 - INFO -    Failed transfers: 0
+2025-08-22 12:57:51,297 - INFO -    RDS deletion: Disabled
+2025-08-22 12:57:51,297 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 12:57:51,297 - INFO -    Duration: 0:00:40.505948
+2025-08-22 12:57:51,297 - INFO - ============================================================
+2025-08-22 12:57:51,297 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
+2025-08-22 13:04:39,070 - INFO - 🚀 Starting RDS → BigQuery Transfer at 2025-08-22 13:04:39.070061
+2025-08-22 13:04:39,070 - INFO - 🎯 Transferring all tables
+2025-08-22 13:04:39,071 - INFO - ============================================================
+2025-08-22 13:04:39,071 - INFO - 🚀 RDS MYSQL → BIGQUERY DIRECT TRANSFER
+2025-08-22 13:04:39,071 - INFO - ============================================================
+2025-08-22 13:04:39,071 - INFO - 🔗 Setting up MySQL connection...
+2025-08-22 13:04:39,430 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-22 13:04:39,431 - INFO - 🔗 Setting up BigQuery client...
+2025-08-22 13:04:41,090 - INFO - ✅ BigQuery connected: infinite-byte-458600-a8
+2025-08-22 13:04:41,090 - INFO - � Creating BigQuery dataset: rds_mysql_data
+2025-08-22 13:04:41,781 - INFO - ✅ Dataset ready: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 13:04:41,782 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-22 13:04:41,874 - INFO - 📋 Found 9 tables:
+2025-08-22 13:04:41,874 - INFO -    • olist_order_items_dataset: 111,507 rows (19.55 MB)
+2025-08-22 13:04:41,874 - INFO -    • olist_customers_dataset: 98,745 rows (12.52 MB)
+2025-08-22 13:04:41,874 - INFO -    • olist_orders_dataset: 98,290 rows (21.55 MB)
+2025-08-22 13:04:41,874 - INFO -    • olist_order_reviews_dataset: 98,289 rows (17.55 MB)
+2025-08-22 13:04:41,874 - INFO -    • olist_products_dataset: 32,851 rows (3.52 MB)
+2025-08-22 13:04:41,875 - INFO -    • olist_sellers_dataset: 3,095 rows (0.30 MB)
+2025-08-22 13:04:41,875 - INFO -    • product_category_name_translation: 71 rows (0.02 MB)
+2025-08-22 13:04:41,875 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-22 13:04:41,875 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-22 13:04:41,875 - INFO - 🎯 Transferring 9 tables
+2025-08-22 13:04:41,875 - INFO - 
+🔄 Starting transfer: olist_order_items_dataset
+2025-08-22 13:04:41,895 - INFO - 🔄 Transferring table: olist_order_items_dataset
+2025-08-22 13:04:41,908 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 13:04:41,908 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 13:04:46,622 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_items_dataset
+2025-08-22 13:04:46,623 - INFO - ✅ Successfully processed empty table: olist_order_items_dataset
+2025-08-22 13:04:46,623 - INFO - 🗑️ Starting RDS data deletion for: olist_order_items_dataset
+2025-08-22 13:04:46,623 - INFO - 🗑️ Deleting RDS data for table: olist_order_items_dataset
+2025-08-22 13:04:46,636 - INFO - 📊 Rows to delete: 0
+2025-08-22 13:04:46,636 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 13:04:46,637 - INFO - ✅ Successfully deleted RDS data: olist_order_items_dataset
+2025-08-22 13:04:46,637 - INFO - 
+🔄 Starting transfer: olist_customers_dataset
+2025-08-22 13:04:46,652 - INFO - 🔄 Transferring table: olist_customers_dataset
+2025-08-22 13:04:46,665 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 13:04:46,665 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 13:04:49,724 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_customers_dataset
+2025-08-22 13:04:49,724 - INFO - ✅ Successfully processed empty table: olist_customers_dataset
+2025-08-22 13:04:49,724 - INFO - 🗑️ Starting RDS data deletion for: olist_customers_dataset
+2025-08-22 13:04:49,724 - INFO - 🗑️ Deleting RDS data for table: olist_customers_dataset
+2025-08-22 13:04:49,737 - INFO - 📊 Rows to delete: 0
+2025-08-22 13:04:49,737 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 13:04:49,737 - INFO - ✅ Successfully deleted RDS data: olist_customers_dataset
+2025-08-22 13:04:49,737 - INFO - 
+🔄 Starting transfer: olist_orders_dataset
+2025-08-22 13:04:49,765 - INFO - 🔄 Transferring table: olist_orders_dataset
+2025-08-22 13:04:49,791 - INFO - 📊 Total rows to transfer: 99,441
+2025-08-22 13:04:49,791 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 13:04:49,792 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 13:04:49,792 - INFO - 📦 Processing large chunk: 0 to 99,441
+2025-08-22 13:05:00,446 - INFO -    🚀 Fast progress: 99,441/99,441 rows (100.0%)
+2025-08-22 13:05:01,766 - INFO - ✅ Optimized transfer complete for olist_orders_dataset
+2025-08-22 13:05:01,766 - INFO -    📊 MySQL rows: 99,441
+2025-08-22 13:05:01,766 - INFO -    📊 BigQuery rows: 99,441
+2025-08-22 13:05:01,766 - INFO -    ✅ Match: Yes
+2025-08-22 13:05:01,766 - INFO - ✅ Successfully transferred: olist_orders_dataset (99,441 rows)
+2025-08-22 13:05:01,766 - INFO - 🗑️ Starting RDS data deletion for: olist_orders_dataset
+2025-08-22 13:05:01,766 - INFO - 🗑️ Deleting RDS data for table: olist_orders_dataset
+2025-08-22 13:05:01,812 - INFO - 📊 Rows to delete: 99,441
+2025-08-22 13:05:02,327 - INFO - ✅ Successfully deleted 99,441 rows from olist_orders_dataset
+2025-08-22 13:05:02,364 - INFO - ✅ Verification: Table olist_orders_dataset is now empty
+2025-08-22 13:05:02,371 - INFO - ✅ Successfully deleted RDS data: olist_orders_dataset
+2025-08-22 13:05:02,372 - INFO - 
+🔄 Starting transfer: olist_order_reviews_dataset
+2025-08-22 13:05:02,432 - INFO - 🔄 Transferring table: olist_order_reviews_dataset
+2025-08-22 13:05:02,463 - INFO - 📊 Total rows to transfer: 99,224
+2025-08-22 13:05:02,463 - INFO - 🚀 Using optimized transfer method for large table
+2025-08-22 13:05:02,463 - INFO - 📦 Using larger chunks of 100,000 rows
+2025-08-22 13:05:02,463 - INFO - 📦 Processing large chunk: 0 to 99,224
+2025-08-22 13:05:11,750 - INFO -    🚀 Fast progress: 99,224/99,224 rows (100.0%)
+2025-08-22 13:05:13,142 - INFO - ✅ Optimized transfer complete for olist_order_reviews_dataset
+2025-08-22 13:05:13,142 - INFO -    📊 MySQL rows: 99,224
+2025-08-22 13:05:13,142 - INFO -    📊 BigQuery rows: 99,224
+2025-08-22 13:05:13,142 - INFO -    ✅ Match: Yes
+2025-08-22 13:05:13,142 - INFO - ✅ Successfully transferred: olist_order_reviews_dataset (99,224 rows)
+2025-08-22 13:05:13,142 - INFO - 🗑️ Starting RDS data deletion for: olist_order_reviews_dataset
+2025-08-22 13:05:13,142 - INFO - 🗑️ Deleting RDS data for table: olist_order_reviews_dataset
+2025-08-22 13:05:13,472 - INFO - 📊 Rows to delete: 99,224
+2025-08-22 13:05:14,143 - INFO - ✅ Successfully deleted 99,224 rows from olist_order_reviews_dataset
+2025-08-22 13:05:14,225 - INFO - ✅ Verification: Table olist_order_reviews_dataset is now empty
+2025-08-22 13:05:14,232 - INFO - ✅ Successfully deleted RDS data: olist_order_reviews_dataset
+2025-08-22 13:05:14,233 - INFO - 
+🔄 Starting transfer: olist_products_dataset
+2025-08-22 13:05:14,271 - INFO - 🔄 Transferring table: olist_products_dataset
+2025-08-22 13:05:14,322 - INFO - 📊 Total rows to transfer: 32,951
+2025-08-22 13:05:14,323 - INFO - 📦 Using chunked transfer method
+2025-08-22 13:05:14,323 - INFO - 📦 Processing chunk: 0 to 32,951
+2025-08-22 13:05:19,697 - INFO -    📈 Progress: 32,951/32,951 rows (100.0%)
+2025-08-22 13:05:21,232 - INFO - ✅ Transfer complete for olist_products_dataset
+2025-08-22 13:05:21,232 - INFO -    📊 MySQL rows: 32,951
+2025-08-22 13:05:21,233 - INFO -    📊 BigQuery rows: 32,951
+2025-08-22 13:05:21,233 - INFO -    ✅ Match: Yes
+2025-08-22 13:05:21,233 - INFO - ✅ Successfully transferred: olist_products_dataset (32,951 rows)
+2025-08-22 13:05:21,233 - INFO - 🗑️ Starting RDS data deletion for: olist_products_dataset
+2025-08-22 13:05:21,233 - INFO - 🗑️ Deleting RDS data for table: olist_products_dataset
+2025-08-22 13:05:21,338 - INFO - 📊 Rows to delete: 32,951
+2025-08-22 13:05:21,542 - INFO - ✅ Successfully deleted 32,951 rows from olist_products_dataset
+2025-08-22 13:05:21,580 - INFO - ✅ Verification: Table olist_products_dataset is now empty
+2025-08-22 13:05:21,586 - INFO - ✅ Successfully deleted RDS data: olist_products_dataset
+2025-08-22 13:05:21,586 - INFO - 
+🔄 Starting transfer: olist_sellers_dataset
+2025-08-22 13:05:21,639 - INFO - 🔄 Transferring table: olist_sellers_dataset
+2025-08-22 13:05:21,671 - INFO - 📊 Total rows to transfer: 3,095
+2025-08-22 13:05:21,671 - INFO - 📦 Using chunked transfer method
+2025-08-22 13:05:21,671 - INFO - 📦 Processing chunk: 0 to 3,095
+2025-08-22 13:05:25,533 - INFO -    📈 Progress: 3,095/3,095 rows (100.0%)
+2025-08-22 13:05:27,070 - INFO - ✅ Transfer complete for olist_sellers_dataset
+2025-08-22 13:05:27,070 - INFO -    📊 MySQL rows: 3,095
+2025-08-22 13:05:27,070 - INFO -    📊 BigQuery rows: 3,095
+2025-08-22 13:05:27,071 - INFO -    ✅ Match: Yes
+2025-08-22 13:05:27,071 - INFO - ✅ Successfully transferred: olist_sellers_dataset (3,095 rows)
+2025-08-22 13:05:27,071 - INFO - 🗑️ Starting RDS data deletion for: olist_sellers_dataset
+2025-08-22 13:05:27,071 - INFO - 🗑️ Deleting RDS data for table: olist_sellers_dataset
+2025-08-22 13:05:27,138 - INFO - 📊 Rows to delete: 3,095
+2025-08-22 13:05:27,179 - INFO - ✅ Successfully deleted 3,095 rows from olist_sellers_dataset
+2025-08-22 13:05:27,208 - INFO - ✅ Verification: Table olist_sellers_dataset is now empty
+2025-08-22 13:05:27,214 - INFO - ✅ Successfully deleted RDS data: olist_sellers_dataset
+2025-08-22 13:05:27,214 - INFO - 
+🔄 Starting transfer: product_category_name_translation
+2025-08-22 13:05:27,245 - INFO - 🔄 Transferring table: product_category_name_translation
+2025-08-22 13:05:27,262 - INFO - 📊 Total rows to transfer: 71
+2025-08-22 13:05:27,263 - INFO - 📦 Using chunked transfer method
+2025-08-22 13:05:27,263 - INFO - 📦 Processing chunk: 0 to 71
+2025-08-22 13:05:31,596 - INFO -    📈 Progress: 71/71 rows (100.0%)
+2025-08-22 13:05:32,790 - INFO - ✅ Transfer complete for product_category_name_translation
+2025-08-22 13:05:32,790 - INFO -    📊 MySQL rows: 71
+2025-08-22 13:05:32,790 - INFO -    📊 BigQuery rows: 71
+2025-08-22 13:05:32,790 - INFO -    ✅ Match: Yes
+2025-08-22 13:05:32,790 - INFO - ✅ Successfully transferred: product_category_name_translation (71 rows)
+2025-08-22 13:05:32,790 - INFO - 🗑️ Starting RDS data deletion for: product_category_name_translation
+2025-08-22 13:05:32,790 - INFO - 🗑️ Deleting RDS data for table: product_category_name_translation
+2025-08-22 13:05:32,812 - INFO - 📊 Rows to delete: 71
+2025-08-22 13:05:32,827 - INFO - ✅ Successfully deleted 71 rows from product_category_name_translation
+2025-08-22 13:05:32,834 - INFO - ✅ Verification: Table product_category_name_translation is now empty
+2025-08-22 13:05:32,839 - INFO - ✅ Successfully deleted RDS data: product_category_name_translation
+2025-08-22 13:05:32,839 - INFO - 
+🔄 Starting transfer: olist_geolocation_dataset
+2025-08-22 13:05:32,860 - INFO - 🔄 Transferring table: olist_geolocation_dataset
+2025-08-22 13:05:32,873 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 13:05:32,873 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 13:05:36,490 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_geolocation_dataset
+2025-08-22 13:05:36,490 - INFO - ✅ Successfully processed empty table: olist_geolocation_dataset
+2025-08-22 13:05:36,490 - INFO - 🗑️ Starting RDS data deletion for: olist_geolocation_dataset
+2025-08-22 13:05:36,490 - INFO - 🗑️ Deleting RDS data for table: olist_geolocation_dataset
+2025-08-22 13:05:36,503 - INFO - 📊 Rows to delete: 0
+2025-08-22 13:05:36,503 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 13:05:36,503 - INFO - ✅ Successfully deleted RDS data: olist_geolocation_dataset
+2025-08-22 13:05:36,503 - INFO - 
+🔄 Starting transfer: olist_order_payments_dataset
+2025-08-22 13:05:36,524 - INFO - 🔄 Transferring table: olist_order_payments_dataset
+2025-08-22 13:05:36,536 - INFO - 📊 Total rows to transfer: 0
+2025-08-22 13:05:36,536 - INFO - 📋 Table is empty - creating empty table in BigQuery
+2025-08-22 13:05:40,074 - INFO - ✅ Empty table created: infinite-byte-458600-a8.rds_mysql_data.olist_order_payments_dataset
+2025-08-22 13:05:40,074 - INFO - ✅ Successfully processed empty table: olist_order_payments_dataset
+2025-08-22 13:05:40,074 - INFO - 🗑️ Starting RDS data deletion for: olist_order_payments_dataset
+2025-08-22 13:05:40,074 - INFO - 🗑️ Deleting RDS data for table: olist_order_payments_dataset
+2025-08-22 13:05:40,087 - INFO - 📊 Rows to delete: 0
+2025-08-22 13:05:40,087 - INFO - 📋 Table already empty - no deletion needed
+2025-08-22 13:05:40,087 - INFO - ✅ Successfully deleted RDS data: olist_order_payments_dataset
+2025-08-22 13:05:40,087 - INFO - ============================================================
+2025-08-22 13:05:40,087 - INFO - 📊 TRANSFER SUMMARY
+2025-08-22 13:05:40,088 - INFO -    Total tables: 9
+2025-08-22 13:05:40,088 - INFO -    Data transfers (rows > 0): 5
+2025-08-22 13:05:40,088 - INFO -    Empty tables processed: 4
+2025-08-22 13:05:40,088 - INFO -    Failed transfers: 0
+2025-08-22 13:05:40,088 - INFO -    Successful deletions: 9
+2025-08-22 13:05:40,088 - INFO -    Failed deletions: 0
+2025-08-22 13:05:40,088 - INFO -    Dataset: infinite-byte-458600-a8.rds_mysql_data
+2025-08-22 13:05:40,088 - INFO -    Duration: 0:01:01.017655
+2025-08-22 13:05:40,088 - INFO - ============================================================
+2025-08-22 13:05:40,088 - INFO - 🎉 RDS → BigQuery transfer completed successfully!
