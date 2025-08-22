@@ -27,20 +27,22 @@ This project now uses environment variables to store sensitive credentials inste
 - `TAP_MYSQL_PASSWORD`: Password for MySQL database connection
 
 #### Google Cloud BigQuery
-- `GOOGLE_CLOUD_PROJECT_ID`: Your GCP project ID
-- `GOOGLE_CLOUD_PRIVATE_KEY_ID`: Service account private key ID
-- `GOOGLE_CLOUD_PRIVATE_KEY`: Service account private key (with newlines)
-- `GOOGLE_CLOUD_CLIENT_EMAIL`: Service account email
-- `GOOGLE_CLOUD_CLIENT_ID`: Service account client ID
-- `GOOGLE_CLOUD_AUTH_URI`: OAuth2 auth URI (usually standard)
-- `GOOGLE_CLOUD_TOKEN_URI`: OAuth2 token URI (usually standard)
-- `GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL`: Provider cert URL (usually standard)
-- `GOOGLE_CLOUD_CLIENT_X509_CERT_URL`: Client cert URL
-- `GOOGLE_CLOUD_UNIVERSE_DOMAIN`: Universe domain (usually googleapis.com)
+- `GOOGLE_CLOUD_CREDENTIALS_JSON`: Complete service account JSON as a single string (recommended approach)
 
 #### BigQuery Configuration
 - `TARGET_BIGQUERY_PROJECT`: BigQuery project ID
 - `TARGET_BIGQUERY_DATASET`: Target dataset name
+
+### Setting Up Google Cloud Credentials
+
+1. **Download your service account JSON file from Google Cloud Console**
+2. **Convert the JSON to a single line string** (remove newlines except within the private key)
+3. **Set the `GOOGLE_CLOUD_CREDENTIALS_JSON` environment variable** with the complete JSON string
+
+Example:
+```bash
+GOOGLE_CLOUD_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
+```
 
 ### Security Benefits
 

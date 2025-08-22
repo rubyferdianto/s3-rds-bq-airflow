@@ -24,7 +24,7 @@ plugins:
     config:
       batch_size: 104857600
       credentials_json: $GOOGLE_CLOUD_CREDENTIALS_JSON
-      dataset: bec_bq
+      dataset: $TARGET_BIGQUERY_DATASET
       denormalized: true
       flattening_enabled: true
       flattening_max_depth: 1
