@@ -282,7 +282,7 @@ def upload_csv_with_complete_workflow(file):
                         if_exists='replace',  # Append to existing table
                         index=False,
                         method='multi',
-                        chunksize=1000
+                        chunksize=10000
                     )
                     inserted_count = len(df_clean)
                     method_used = "PostgreSQL (pandas.to_sql - replace)"
@@ -309,51 +309,77 @@ def upload_csv_with_complete_workflow(file):
                         workflow_log.append("🔄 Attempting direct insert (may create table automatically)...")
                     
                     records = df_clean.to_dict('records')
-                    # Handle NaN values and ensure CREATED_DATE is properly formatted
+                    # Handle NaN values, data type conversion, and ensure CREATED_DATE is properly formatted
                     for record in records:
                         for key, value in record.items():
                             if pd.isna(value):
                                 record[key] = None
+                            elif isinstance(value, float):
+                                # Convert float to int if it's a whole number (e.g., 287.0 → 287)
+                                if value.is_integer():
+                                    record[key] = int(value)
+                                # Keep as float if it has decimal places (e.g., 287.5 → 287.5)
+                                else:
+                                    record[key] = value
+                            # Handle numpy int64/float64 types
+                            elif hasattr(value, 'dtype'):
+                                if 'int' in str(value.dtype):
+                                    record[key] = int(value)
+                                elif 'float' in str(value.dtype):
+                                    record[key] = float(value)
                         # Ensure created_date is included
                         if 'created_date' not in record:
-                            record['created_date'] = pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
+                            record[key] = pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
                     
                     # Truncate table before inserting new data (replace behavior)
                     if table_exists:
+                        truncation_successful = False
                         try:
-                            workflow_log.append(f"🗑️ Truncating table '{table_name}' using universal filter...")
+                            workflow_log.append(f"🗑️ Truncating table '{table_name}' using custom PostgreSQL function...")
                             
-                            # Your brilliant idea: Use "WHERE 1=1" equivalent with Supabase REST API
-                            # We'll use a condition that should always be true for all records
-                            
-                            # Strategy 1: Try neq with created_date (we know this column exists)
+                            # Strategy 1: Use your custom olist_truncate_table function (BEST!)
                             try:
-                                delete_result = supabase.table(table_name).delete().neq('created_date', '1900-01-01').execute()
-                                workflow_log.append(f"✅ Table '{table_name}' truncated successfully using created_date filter")
-                            except Exception as neq_error:
-                                workflow_log.append(f"⚠️ Created_date filter (neq) failed: {str(neq_error)}")
+                                truncate_result = supabase.rpc('olist_truncate_table', {'table_name': table_name}).execute()
+                                workflow_log.append(f"✅ Table '{table_name}' truncated successfully using olist_truncate_table() function")
+                                workflow_log.append("🚀 TRUNCATE TABLE with RESTART IDENTITY CASCADE executed!")
+                                truncation_successful = True
+                            except Exception as rpc_error:
+                                error_msg = str(rpc_error)
+                                workflow_log.append(f"⚠️ Custom truncate function failed: {error_msg}")
                                 
-                                # Strategy 2: Try using any other column with impossible value
+                                # Fallback Strategy 2: REST API universal delete with created_date
+                                workflow_log.append("🔄 Falling back to REST API delete method...")
                                 try:
-                                    # Get table structure first
-                                    sample = supabase.table(table_name).select("*").limit(1).execute()
-                                    if sample.data and len(sample.data) > 0:
-                                        first_column = list(sample.data[0].keys())[0]
-                                        workflow_log.append(f"🔄 Trying universal delete with '{first_column}' column...")
-                                        delete_result = supabase.table(table_name).delete().neq(first_column, '___IMPOSSIBLE_VALUE___').execute()
-                                        workflow_log.append(f"✅ Table '{table_name}' truncated successfully using '{first_column}' column")
-                                    else:
-                                        raise Exception("Table appears empty or inaccessible")
-                                except Exception as column_error:
-                                    workflow_log.append(f"⚠️ Column-based delete also failed: {str(column_error)}")
-                                    raise truncate_error  # Re-raise to trigger fallback
+                                    delete_result = supabase.table(table_name).delete().neq('created_date', '1900-01-01').execute()
+                                    workflow_log.append(f"✅ Table '{table_name}' truncated successfully using created_date filter")
+                                    truncation_successful = True
+                                except Exception as neq_error:
+                                    workflow_log.append(f"⚠️ REST API delete also failed: {str(neq_error)}")
+                                    
+                                    # Final Fallback Strategy 3: Try with any available column
+                                    try:
+                                        sample = supabase.table(table_name).select("*").limit(1).execute()
+                                        if sample.data and len(sample.data) > 0:
+                                            first_column = list(sample.data[0].keys())[0]
+                                            workflow_log.append(f"🔄 Trying universal delete with '{first_column}' column...")
+                                            delete_result = supabase.table(table_name).delete().neq(first_column, '___IMPOSSIBLE_VALUE___').execute()
+                                            workflow_log.append(f"✅ Table '{table_name}' truncated successfully using '{first_column}' column")
+                                            truncation_successful = True
+                                        else:
+                                            workflow_log.append("⚠️ Table appears empty or inaccessible")
+                                    except Exception as column_error:
+                                        workflow_log.append(f"⚠️ All truncation methods failed: {str(column_error)}")
                                         
-                        except Exception as truncate_error:
-                            workflow_log.append(f"⚠️ All truncation attempts failed: {str(truncate_error)}")
-                            workflow_log.append("🔄 Proceeding with upsert instead (may create duplicates)...")
+                        except Exception as general_truncate_error:
+                            workflow_log.append(f"⚠️ Truncation error: {str(general_truncate_error)}")
+                        
+                        if not truncation_successful:
+                            workflow_log.append("🔄 Proceeding with insert (may create duplicates if re-uploading)...")
+                        else:
+                            workflow_log.append("🎯 Table successfully cleared - ready for fresh data!")
                     
-                    # Insert in batches with upsert to handle duplicates
-                    batch_size = 1000
+                    # Insert in batches (simple insert since table was truncated)
+                    batch_size = 10000
                     total_batches = (len(records) + batch_size - 1) // batch_size
                     successful_inserts = 0
                     
@@ -362,10 +388,16 @@ def upload_csv_with_complete_workflow(file):
                         batch_num = i // batch_size + 1
                         
                         try:
-                            # Use upsert to handle duplicates gracefully
-                            result = supabase.table(table_name).upsert(batch).execute()
-                            successful_inserts += len(batch)
-                            workflow_log.append(f"  ✅ Batch {batch_num}/{total_batches} completed (upsert)")
+                            if truncation_successful:
+                                # Table was cleared, use simple insert (fastest)
+                                result = supabase.table(table_name).insert(batch).execute()
+                                successful_inserts += len(batch)
+                                workflow_log.append(f"  ✅ Batch {batch_num}/{total_batches} completed (insert)")
+                            else:
+                                # Truncation failed, use upsert as fallback (may create duplicates)
+                                result = supabase.table(table_name).upsert(batch).execute()
+                                successful_inserts += len(batch)
+                                workflow_log.append(f"  ✅ Batch {batch_num}/{total_batches} completed (upsert fallback)")
                         except Exception as batch_error:
                             # If upsert fails, try regular insert (creates table if not exists)
                             try:
