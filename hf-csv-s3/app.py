@@ -321,12 +321,36 @@ def upload_csv_with_complete_workflow(file):
                     # Truncate table before inserting new data (replace behavior)
                     if table_exists:
                         try:
-                            workflow_log.append(f"🗑️ Truncating table '{table_name}' before inserting new data...")
-                            delete_result = supabase.table(table_name).delete().neq('id', 0).execute()
-                            workflow_log.append(f"✅ Table '{table_name}' truncated successfully")
+                            workflow_log.append(f"🗑️ Truncating table '{table_name}' using universal filter...")
+                            
+                            # Your brilliant idea: Use "WHERE 1=1" equivalent with Supabase REST API
+                            # We'll use a condition that should always be true for all records
+                            
+                            # Strategy 1: Try neq with created_date (we know this column exists)
+                            try:
+                                delete_result = supabase.table(table_name).delete().neq('created_date', '1900-01-01').execute()
+                                workflow_log.append(f"✅ Table '{table_name}' truncated successfully using created_date filter")
+                            except Exception as neq_error:
+                                workflow_log.append(f"⚠️ Created_date filter (neq) failed: {str(neq_error)}")
+                                
+                                # Strategy 2: Try using any other column with impossible value
+                                try:
+                                    # Get table structure first
+                                    sample = supabase.table(table_name).select("*").limit(1).execute()
+                                    if sample.data and len(sample.data) > 0:
+                                        first_column = list(sample.data[0].keys())[0]
+                                        workflow_log.append(f"🔄 Trying universal delete with '{first_column}' column...")
+                                        delete_result = supabase.table(table_name).delete().neq(first_column, '___IMPOSSIBLE_VALUE___').execute()
+                                        workflow_log.append(f"✅ Table '{table_name}' truncated successfully using '{first_column}' column")
+                                    else:
+                                        raise Exception("Table appears empty or inaccessible")
+                                except Exception as column_error:
+                                    workflow_log.append(f"⚠️ Column-based delete also failed: {str(column_error)}")
+                                    raise truncate_error  # Re-raise to trigger fallback
+                                        
                         except Exception as truncate_error:
-                            workflow_log.append(f"⚠️ Could not truncate table: {str(truncate_error)}")
-                            workflow_log.append("🔄 Proceeding with upsert instead...")
+                            workflow_log.append(f"⚠️ All truncation attempts failed: {str(truncate_error)}")
+                            workflow_log.append("🔄 Proceeding with upsert instead (may create duplicates)...")
                     
                     # Insert in batches with upsert to handle duplicates
                     batch_size = 1000
