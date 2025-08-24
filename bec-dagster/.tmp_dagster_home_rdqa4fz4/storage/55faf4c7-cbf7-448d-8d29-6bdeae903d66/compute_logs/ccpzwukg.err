@@ -1,0 +1,206 @@
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94945 - LOGS_CAPTURED - Started capturing logs in process (pid: 94945).
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94945 - _3_rds_to_bigquery - STEP_START - Started execution of step "_3_rds_to_bigquery".
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - Loading file from: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-dagster/.tmp_dagster_home_rdqa4fz4/storage/_2_s3_to_rds using PickledObjectFilesystemIOManager...
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94945 - _3_rds_to_bigquery - LOADED_INPUT - Loaded input "_2_s3_to_rds" using input manager "io_manager", from output "result" of step "_2_s3_to_rds"
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94945 - _3_rds_to_bigquery - STEP_INPUT - Got input "_2_s3_to_rds" of type "Any". (Type check passed).
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 🔄 Loading - RDS to BigQuery...
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 💡 This function can handle previous stage failures
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - ⚠️ Previous stage _2_s3_to_rds failed or returned empty result
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 🔄 Attempting alternative table discovery methods...
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 📁 Checking S3 imported folder: s3-imported-to-rds
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 📁 Found processed files in S3 imported folder
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - 📊 Found 9 tables from S3: ['olist_customers_dataset', 'olist_geolocation_dataset', 'olist_order_items_dataset', 'olist_order_payments_dataset', 'olist_order_reviews_dataset', 'olist_orders_dataset', 'olist_products_dataset', 'olist_sellers_dataset', 'product_category_name_translation']
+[32m2025-08-23 00:16:24 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - Starting transfer of 9 tables from RDS to BigQuery
+[32m2025-08-23 00:16:49 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - RDS to BigQuery transfer failed: 2025-08-23 00:16:24,661 - INFO - 🚀 Running RDS to BigQuery stage...
+2025-08-23 00:16:24,661 - INFO - 💡 Using Meltano ELT pipeline (production-ready, Docker-optimized)
+2025-08-23 00:16:24,661 - INFO - 🚀 Starting: Meltano RDS to BigQuery Transfer
+2025-08-23 00:16:24,661 - INFO - 📜 Executing: rds-to-bq-meltano.py
+2025-08-23 00:16:24,661 - INFO - 🐍 Using conda environment 'bec'
+2025-08-23 00:16:24,661 - INFO - 🔧 Command: conda activate bec && python rds-to-bq-meltano.py
+2025-08-23 00:16:49,246 - ERROR - ❌ Meltano RDS to BigQuery Transfer failed with return code 1
+2025-08-23 00:16:49,246 - ERROR - Error output:
+2025-08-23 00:16:26,842 - INFO - 🚀 Starting Meltano Pipeline at 2025-08-23 00:16:26.841985
+2025-08-23 00:16:26,842 - INFO - 📁 Meltano directory: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-meltano
+2025-08-23 00:16:26,842 - INFO - ============================================================
+2025-08-23 00:16:26,842 - INFO - 🔄 MELTANO ETL PIPELINE: RDS MYSQL → BIGQUERY
+2025-08-23 00:16:26,842 - INFO - ============================================================
+2025-08-23 00:16:26,842 - INFO - 🔍 Checking Meltano environment...
+2025-08-23 00:16:27,835 - INFO - ✅ Meltano version: meltano, version 3.7.8
+2025-08-23 00:16:27,836 - INFO - 🔧 Checking Meltano configuration...
+2025-08-23 00:16:30,172 - INFO - ✅ tap-mysql configuration valid
+2025-08-23 00:16:32,234 - INFO - ✅ target-bigquery configuration valid
+2025-08-23 00:16:32,234 - INFO - 🎯 Running full pipeline for all configured tables
+2025-08-23 00:16:32,235 - INFO - 🚀 Starting ETL execution...
+2025-08-23 00:16:32,235 - INFO - 📍 Command: meltano run tap-mysql target-bigquery
+[2m2025-08-22T16:16:33.198329Z[0m [[32m[1minfo     [0m] [1mEnvironment 'dev' is active   [0m
+[2m2025-08-22T16:16:33.694893Z[0m [[32m[1minfo     [0m] [1mUsing systemdb state backend  [0m
+[2m2025-08-22T16:16:34.059850Z[0m [[32m[1minfo     [0m] [1m/Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-meltano/.meltano/loaders/target-bigquery/venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:34.060271Z[0m [[32m[1minfo     [0m] [1m  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:34.612947Z[0m [[32m[1minfo     [0m] [1mUsing thread-based parallelism[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:34.613361Z[0m [[32m[1minfo     [0m] [1mTarget 'target-bigquery' is listening for input from tap.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:37.523108Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:37.523474Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_customers_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:38.496126Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_customers_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:38.496497Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:38.496771Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:38.496953Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_geolocation_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:39.260302Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_geolocation_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:39.260853Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:39.261257Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:39.261488Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_order_items_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.021561Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_order_items_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.021891Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.022144Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.022375Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_order_payments_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.792708Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_order_payments_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.793062Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.793326Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:40.793506Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_order_reviews_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:41.612011Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_order_reviews_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:41.612446Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:41.612851Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:41.613083Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_orders_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:42.431221Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_orders_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:42.431972Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:42.432670Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:42.433203Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_products_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:43.249566Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_products_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:43.250157Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:43.250442Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:43.250632Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-olist_sellers_dataset'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.170754Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-olist_sellers_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.171108Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.171382Z[0m [[32m[1minfo     [0m] [1mInitializing 'target-bigquery' target sink...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.171566Z[0m [[32m[1minfo     [0m] [1mInitializing target sink for stream 'bec-db-rds-product_category_name_translation'...[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.928513Z[0m [[32m[1minfo     [0m] [1mSetting up bec-db-rds-product_category_name_translation[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.929015Z[0m [[32m[1minfo     [0m] [1mACTIVATE_VERSION message received but not implemented by this target. Ignoring.[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.929356Z[0m [[32m[1minfo     [0m] [1mTarget 'target-bigquery' completed reading 46 lines of input (0 records, (0 batch manifests, 28 state messages).[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.929991Z[0m [[32m[1minfo     [0m] [1mAdding worker 1209ae5782a542c7951d79e9b63f905b[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.930417Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_customers_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.930632Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_geolocation_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.930849Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_order_items_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.931108Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_order_payments_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.931314Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_order_reviews_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.931483Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_orders_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.931731Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_products_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.931901Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-olist_sellers_dataset[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.932129Z[0m [[32m[1minfo     [0m] [1mCleaning up bec-db-rds-product_category_name_translation[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.932406Z[0m [[32m[1minfo     [0m] [1mEmitting completed target state {"currently_syncing": null, "bookmarks": {"bec-db-rds-olist_customers_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_geolocation_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_order_items_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_order_payments_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_order_reviews_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_orders_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_products_dataset": {"initial_full_table_complete": true}, "bec-db-rds-olist_sellers_dataset": {"initial_full_table_complete": true}, "bec-db-rds-product_category_name_translation": {"initial_full_table_complete": true}}}[0m [36mcmd_type[0m=[35melb[0m [36mconsumer[0m=[35mTrue[0m [36mjob_name[0m=[35mdev:tap-mysql-to-target-bigquery[0m [36mname[0m=[35mtarget-bigquery[0m [36mproducer[0m=[35mFalse[0m [36mrun_id[0m=[35m013331fd-3753-4054-9a64-81106bf79a07[0m [36mstdio[0m=[35mstderr[0m [36mstring_id[0m=[35mtarget-bigquery[0m
+[2m2025-08-22T16:16:44.941463Z[0m [[32m[1minfo     [0m] [1mUsing systemdb state backend  [0m
+[2m2025-08-22T16:16:44.945981Z[0m [[32m[1minfo     [0m] [1mIncremental state has been updated at 2025-08-22 16:16:44.945955+00:00.[0m
+[2m2025-08-22T16:16:45.096324Z[0m [[32m[1minfo     [0m] [1mBlock run completed.          [0m [36mblock_type[0m=[35mExtractLoadBlocks[0m [36merr[0m=[35mNone[0m [36mset_number[0m=[35m0[0m [36msuccess[0m=[35mTrue[0m
+2025-08-23 00:16:46,015 - INFO - ============================================================
+2025-08-23 00:16:46,015 - INFO - 🎉 PIPELINE COMPLETED SUCCESSFULLY
+2025-08-23 00:16:46,016 - INFO -    Start time: 2025-08-23 00:16:26.841985
+2025-08-23 00:16:46,016 - INFO -    End time: 2025-08-23 00:16:46.015402
+2025-08-23 00:16:46,016 - INFO -    Duration: 0:00:19.173417
+2025-08-23 00:16:46,016 - INFO - ============================================================
+2025-08-23 00:16:46,016 - INFO - 🔧 Manually triggering post-hook cleanup...
+2025-08-23 00:16:46,016 - INFO - Executing post-hook cleanup manually...
+2025-08-23 00:16:49,233 - ERROR - ❌ Post-hook cleanup failed with exit code: 1
+2025-08-23 00:16:49,233 - ERROR - Cleanup error: 2025-08-23 00:16:46,068 - INFO - [POST-HOOK] ============================================================
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 🎣 MELTANO POST-HOOK TRIGGERED!
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 🕐 Timestamp: 2025-08-23 00:16:46.068507
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 🐍 Python executable: /Users/rubyferdianto/miniconda3/envs/bec/bin/python
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 📁 Working directory: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-meltano
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] ============================================================
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 📂 Script directory: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-meltano
+2025-08-23 00:16:46,068 - INFO - [POST-HOOK] 🧹 Cleanup script path: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-meltano/delete-rds-after-load.py
+2025-08-23 00:16:46,069 - INFO - [POST-HOOK] ✅ Cleanup script found!
+2025-08-23 00:16:46,069 - INFO - [POST-HOOK] 🧹 Starting automated RDS cleanup after Meltano pipeline...
+2025-08-23 00:16:46,069 - INFO - [POST-HOOK] 🔍 Step 1: Verifying BigQuery data...
+2025-08-23 00:16:49,223 - ERROR - [POST-HOOK] ❌ BigQuery verification failed - skipping cleanup
+2025-08-23 00:16:49,223 - ERROR - [POST-HOOK] 2025-08-23 00:16:47,196 - INFO - 🧹 Starting RDS Cleanup Manager at 2025-08-23 00:16:47.196911
+2025-08-23 00:16:47,197 - INFO - ============================================================
+2025-08-23 00:16:47,197 - INFO - 🧹 RDS CLEANUP AFTER BIGQUERY IMPORT
+2025-08-23 00:16:47,197 - INFO - ============================================================
+2025-08-23 00:16:47,197 - INFO - 🔗 Setting up MySQL connection...
+2025-08-23 00:16:47,318 - INFO - ✅ MySQL connected: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com/bec-db-rds
+2025-08-23 00:16:47,319 - INFO - 🔗 Setting up BigQuery client...
+2025-08-23 00:16:48,975 - INFO -  BigQuery connected: infinite-byte-458600-a8
+2025-08-23 00:16:48,975 - INFO -  Target dataset: infinite-byte-458600-a8.bec_bq
+2025-08-23 00:16:48,975 - INFO - 🔍 Scanning RDS MySQL tables...
+2025-08-23 00:16:49,056 - INFO - 📋 Found 9 tables in RDS:
+2025-08-23 00:16:49,056 - INFO -    • olist_order_items_dataset: 0 rows (19.55 MB)
+2025-08-23 00:16:49,056 - INFO -    • olist_customers_dataset: 0 rows (12.52 MB)
+2025-08-23 00:16:49,056 - INFO -    • olist_geolocation_dataset: 0 rows (48.09 MB)
+2025-08-23 00:16:49,056 - INFO -    • olist_order_payments_dataset: 0 rows (0.02 MB)
+2025-08-23 00:16:49,056 - INFO -    • olist_order_reviews_dataset: 0 rows (0.02 MB)
+2025-08-23 00:16:49,057 - INFO -    • olist_orders_dataset: 0 rows (0.02 MB)
+2025-08-23 00:16:49,057 - INFO -    • olist_products_dataset: 0 rows (0.02 MB)
+2025-08-23 00:16:49,057 - INFO -    • olist_sellers_dataset: 0 rows (0.02 MB)
+2025-08-23 00:16:49,057 - INFO -    • product_category_name_translation: 0 rows (0.02 MB)
+2025-08-23 00:16:49,057 - INFO - 🎯 Processing 9 table(s)
+2025-08-23 00:16:49,057 - INFO - 
+ Processing table: olist_order_items_dataset
+2025-08-23 00:16:49,057 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,057 - INFO - 📋 Table olist_order_items_dataset is already empty, skipping
+2025-08-23 00:16:49,057 - INFO - 
+ Processing table: olist_customers_dataset
+2025-08-23 00:16:49,057 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,057 - INFO - 📋 Table olist_customers_dataset is already empty, skipping
+2025-08-23 00:16:49,057 - INFO - 
+ Processing table: olist_geolocation_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_geolocation_dataset is already empty, skipping
+2025-08-23 00:16:49,058 - INFO - 
+ Processing table: olist_order_payments_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_order_payments_dataset is already empty, skipping
+2025-08-23 00:16:49,058 - INFO - 
+ Processing table: olist_order_reviews_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_order_reviews_dataset is already empty, skipping
+2025-08-23 00:16:49,058 - INFO - 
+ Processing table: olist_orders_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_orders_dataset is already empty, skipping
+2025-08-23 00:16:49,058 - INFO - 
+ Processing table: olist_products_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_products_dataset is already empty, skipping
+2025-08-23 00:16:49,058 - INFO - 
+ Processing table: olist_sellers_dataset
+2025-08-23 00:16:49,058 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,058 - INFO - 📋 Table olist_sellers_dataset is already empty, skipping
+2025-08-23 00:16:49,059 - INFO - 
+ Processing table: product_category_name_translation
+2025-08-23 00:16:49,059 - INFO -  RDS rows: 0
+2025-08-23 00:16:49,059 - INFO - 📋 Table product_category_name_translation is already empty, skipping
+2025-08-23 00:16:49,059 - INFO - ============================================================
+2025-08-23 00:16:49,059 - INFO -    CLEANUP SUMMARY
+2025-08-23 00:16:49,059 - INFO -    Total tables: 9
+2025-08-23 00:16:49,059 - INFO -    Verified in BigQuery: 0
+2025-08-23 00:16:49,059 - INFO -    Cleaned tables: 0
+2025-08-23 00:16:49,059 - INFO -    Skipped tables: 9
+2025-08-23 00:16:49,059 - INFO -    Duration: 0:00:01.862328
+2025-08-23 00:16:49,059 - INFO -    Mode: Verification only
+2025-08-23 00:16:49,059 - INFO - ============================================================
+2025-08-23 00:16:49,059 - ERROR - RDS cleanup failed!
+
+
+2025-08-23 00:16:49,233 - ERROR - ❌ Meltano pipeline failed!
+
+[0m
+[32m2025-08-23 00:16:49 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _3_rds_to_bigquery - Error during BigQuery transfer: Transfer failed with exit code 1[0m
+[32m2025-08-23 00:16:49 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94945 - _3_rds_to_bigquery - STEP_FAILURE - Execution of step "_3_rds_to_bigquery" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "_3_rds_to_bigquery"::
+
+Exception: Transfer failed with exit code 1
+
+Stack Trace:
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/rubyferdianto/miniconda3/envs/bec/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-dagster/dagster_pipeline.py", line 390, in _3_rds_to_bigquery
+    raise Exception(f"Transfer failed with exit code {result.returncode}")
+[0m

@@ -1,0 +1,9 @@
+gradio
+boto3
+pandas
+python-dotenv
+supabase
+aiohttp
+asyncpg
+sqlalchemy
+psycopg2-binary

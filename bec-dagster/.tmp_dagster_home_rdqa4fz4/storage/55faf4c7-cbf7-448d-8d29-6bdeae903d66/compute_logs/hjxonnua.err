@@ -1,0 +1,13 @@
+[32m2025-08-23 00:16:21 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - LOGS_CAPTURED - Started capturing logs in process (pid: 94934).
+[32m2025-08-23 00:16:21 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - _2_s3_to_rds - STEP_START - Started execution of step "_2_s3_to_rds".
+[32m2025-08-23 00:16:21 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - 🔄 Extraction - Upload S3 to RDS...
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - Connected to S3 service
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - 🔍 Listing CSV files from S3 bucket: bec-bucket-aws
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - 🔍 Looking in prefix: s3-to-rds/
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - No files found in S3 bucket bec-bucket-aws with prefix s3-to-rds/
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - No CSV files found in S3. Pipeline will continue but RDS import may fail.
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - _2_s3_to_rds - STEP_OUTPUT - Yielded output "result" of type "[String]". (Type check passed).
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - _2_s3_to_rds - Writing file at: /Applications/RF/NTU/SCTP in DSAI/s3-rds-bq-dagster/bec-dagster/.tmp_dagster_home_rdqa4fz4/storage/_2_s3_to_rds using PickledObjectFilesystemIOManager...
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - _2_s3_to_rds - ASSET_MATERIALIZATION - Materialized value _2_s3_to_rds.
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - _2_s3_to_rds - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2025-08-23 00:16:22 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 55faf4c7-cbf7-448d-8d29-6bdeae903d66 - 94934 - _2_s3_to_rds - STEP_SUCCESS - Finished execution of step "_2_s3_to_rds" in 476ms.

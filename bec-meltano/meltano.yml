@@ -23,7 +23,7 @@ plugins:
     pip_url: git+https://github.com/z3z1ma/target-bigquery.git
     config:
       batch_size: 104857600
-      credentials_json: $GOOGLE_CLOUD_CREDENTIALS_JSON
+      credentials_path: $GOOGLE_CLOUD_CREDENTIALS_JSON
       dataset: $TARGET_BIGQUERY_DATASET
       denormalized: true
       flattening_enabled: true
