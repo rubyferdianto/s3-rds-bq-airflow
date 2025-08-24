@@ -318,6 +318,16 @@ def upload_csv_with_complete_workflow(file):
                         if 'created_date' not in record:
                             record['created_date'] = pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
                     
+                    # Truncate table before inserting new data (replace behavior)
+                    if table_exists:
+                        try:
+                            workflow_log.append(f"🗑️ Truncating table '{table_name}' before inserting new data...")
+                            delete_result = supabase.table(table_name).delete().neq('id', 0).execute()
+                            workflow_log.append(f"✅ Table '{table_name}' truncated successfully")
+                        except Exception as truncate_error:
+                            workflow_log.append(f"⚠️ Could not truncate table: {str(truncate_error)}")
+                            workflow_log.append("🔄 Proceeding with upsert instead...")
+                    
                     # Insert in batches with upsert to handle duplicates
                     batch_size = 1000
                     total_batches = (len(records) + batch_size - 1) // batch_size
@@ -349,7 +359,7 @@ def upload_csv_with_complete_workflow(file):
                                     workflow_log.append(f"  💡 Permission issue - check RLS policies in Supabase")
                     
                     inserted_count = successful_inserts
-                    method_used = f"Supabase REST API ({'table created' if successful_inserts > 0 else 'failed'})"
+                    method_used = f"Supabase REST API - {'Truncate & Insert' if table_exists and successful_inserts > 0 else 'Insert Only'} ({'success' if successful_inserts > 0 else 'failed'})"
                     database_success = successful_inserts > 0
                 
                 workflow_log.append(f"✅ Step 2 Complete: {inserted_count:,} rows imported to table '{table_name}'")
