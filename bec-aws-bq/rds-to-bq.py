@@ -134,9 +134,13 @@ class RDSToBigQueryTransfer:
             logger.error(f"❌ BigQuery setup failed: {e}")
             return False
     
-    def create_bigquery_dataset(self, dataset_name="rds_mysql_data"):
+    def create_bigquery_dataset(self, dataset_name=None):
         """Create BigQuery dataset"""
-        logger.info(f"� Creating BigQuery dataset: {dataset_name}")
+        # Use environment variable if no dataset name provided
+        if dataset_name is None:
+            dataset_name = os.getenv("BQ_DATASET", "rds_mysql_data")
+            
+        logger.info(f"📊 Creating BigQuery dataset: {dataset_name}")
         
         try:
             self.dataset_id = f"{self.project_id}.{dataset_name}"
@@ -197,13 +201,17 @@ class RDSToBigQueryTransfer:
             logger.error(f"❌ Failed to scan tables: {e}")
             return []
     
-    def transfer_table_to_bigquery(self, table_name, chunk_size=50000, use_fast_method=True):
+    def transfer_table_to_bigquery(self, original_table_name, bigquery_table_name=None, chunk_size=50000, use_fast_method=True):
         """2. Copy from RDS to BQ using Python google cloud directly"""
-        logger.info(f"🔄 Transferring table: {table_name}")
+        # If bigquery_table_name is not provided, use original_table_name
+        if bigquery_table_name is None:
+            bigquery_table_name = original_table_name
+            
+        logger.info(f"🔄 Transferring table: {original_table_name} → {bigquery_table_name}")
         
         try:
             # Get table row count for progress tracking
-            count_query = f"SELECT COUNT(*) FROM {table_name}"
+            count_query = f"SELECT COUNT(*) FROM {original_table_name}"
             with self.mysql_engine.connect() as conn:
                 result = conn.execute(text(count_query))
                 total_rows = result.scalar()
@@ -211,39 +219,29 @@ class RDSToBigQueryTransfer:
             logger.info(f"📊 Total rows to transfer: {total_rows:,}")
             
             if total_rows == 0:
-                logger.info("📋 Table is empty - creating empty table in BigQuery")
-                # Create empty table structure
-                schema_query = f"SELECT * FROM {table_name} LIMIT 0"
-                df_schema = pd.read_sql(schema_query, self.mysql_engine)
-                
-                table_id = f"{self.dataset_id}.{table_name}"
-                job_config = bigquery.LoadJobConfig(
-                    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
-                    autodetect=True
-                )
-                
-                job = self.bq_client.load_table_from_dataframe(df_schema, table_id, job_config=job_config)
-                job.result()
-                logger.info(f"✅ Empty table created: {table_id}")
-                return True
+                logger.info("📋 Table is empty - skipping BigQuery creation (only creating tables with data)")
+                return True  # Return success to avoid marking as failed
+            
+            # Only proceed if table has data
+            logger.info(f"📊 Table has {total_rows:,} rows - proceeding with BigQuery transfer")
             
             # Choose transfer method based on table size and preference
             if use_fast_method and total_rows > 50000:
-                return self._transfer_large_table_optimized(table_name, total_rows)
+                return self._transfer_large_table_optimized(original_table_name, bigquery_table_name, total_rows)
             else:
-                return self._transfer_table_chunked(table_name, total_rows, chunk_size)
+                return self._transfer_table_chunked(original_table_name, bigquery_table_name, total_rows, chunk_size)
             
         except Exception as e:
-            logger.error(f"❌ Transfer failed for {table_name}: {e}")
+            logger.error(f"❌ Transfer failed for {original_table_name} → {bigquery_table_name}: {e}")
             return False
     
-    def _transfer_large_table_optimized(self, table_name, total_rows):
+    def _transfer_large_table_optimized(self, original_table_name, bigquery_table_name, total_rows):
         """Optimized transfer for large tables using BigQuery native loading"""
         logger.info(f"🚀 Using optimized transfer method for large table")
         
         try:
             # Method 1: Direct SQL query to BigQuery (fastest for large datasets)
-            table_id = f"{self.dataset_id}.{table_name}"
+            table_id = f"{self.dataset_id}.{bigquery_table_name}"
             
             # Get MySQL connection details for BigQuery External Data Source
             mysql_config = {
@@ -265,7 +263,7 @@ class RDSToBigQueryTransfer:
                 
                 # Read large chunk from MySQL with optimized query
                 chunk_query = f"""
-                SELECT * FROM {table_name} 
+                SELECT * FROM {original_table_name} 
                 LIMIT {chunk_size} OFFSET {offset}
                 """
                 
@@ -307,7 +305,7 @@ class RDSToBigQueryTransfer:
             result = self.bq_client.query(verify_query).result()
             bq_rows = next(result)[0]
             
-            logger.info(f"✅ Optimized transfer complete for {table_name}")
+            logger.info(f"✅ Optimized transfer complete for {original_table_name} → {bigquery_table_name}")
             logger.info(f"   📊 MySQL rows: {total_rows:,}")
             logger.info(f"   📊 BigQuery rows: {bq_rows:,}")
             logger.info(f"   ✅ Match: {'Yes' if total_rows == bq_rows else 'No'}")
@@ -315,23 +313,23 @@ class RDSToBigQueryTransfer:
             return total_rows == bq_rows
             
         except Exception as e:
-            logger.error(f"❌ Optimized transfer failed for {table_name}: {e}")
+            logger.error(f"❌ Optimized transfer failed for {original_table_name} → {bigquery_table_name}: {e}")
             logger.info("🔄 Falling back to chunked method...")
-            return self._transfer_table_chunked(table_name, total_rows, 10000)
+            return self._transfer_table_chunked(original_table_name, bigquery_table_name, total_rows, 10000)
     
-    def _transfer_table_chunked(self, table_name, total_rows, chunk_size):
+    def _transfer_table_chunked(self, original_table_name, bigquery_table_name, total_rows, chunk_size):
         """Original chunked transfer method (fallback)"""
         logger.info(f"📦 Using chunked transfer method")
         
         try:
-            table_id = f"{self.dataset_id}.{table_name}"
+            table_id = f"{self.dataset_id}.{bigquery_table_name}"
             transferred_rows = 0
             
             for offset in range(0, total_rows, chunk_size):
                 logger.info(f"📦 Processing chunk: {offset:,} to {min(offset + chunk_size, total_rows):,}")
                 
                 # Read chunk from MySQL
-                chunk_query = f"SELECT * FROM {table_name} LIMIT {chunk_size} OFFSET {offset}"
+                chunk_query = f"SELECT * FROM {original_table_name} LIMIT {chunk_size} OFFSET {offset}"
                 df_chunk = pd.read_sql(chunk_query, self.mysql_engine)
                 
                 if df_chunk.empty:
@@ -377,7 +375,7 @@ class RDSToBigQueryTransfer:
             result = self.bq_client.query(verify_query).result()
             bq_rows = next(result)[0]
             
-            logger.info(f"✅ Transfer complete for {table_name}")
+            logger.info(f"✅ Transfer complete for {original_table_name} → {bigquery_table_name}")
             logger.info(f"   📊 MySQL rows: {total_rows:,}")
             logger.info(f"   📊 BigQuery rows: {bq_rows:,}")
             logger.info(f"   ✅ Match: {'Yes' if total_rows == bq_rows else 'No'}")
@@ -385,7 +383,7 @@ class RDSToBigQueryTransfer:
             return total_rows == bq_rows
             
         except Exception as e:
-            logger.error(f"❌ Chunked transfer failed for {table_name}: {e}")
+            logger.error(f"❌ Chunked transfer failed for {original_table_name} → {bigquery_table_name}: {e}")
             return False
     
     def delete_rds_table_data(self, table_name):
@@ -477,44 +475,45 @@ class RDSToBigQueryTransfer:
         empty_tables_processed = 0
         
         for table in tables_to_transfer:
-            table_name = table['name']
-            logger.info(f"\n🔄 Starting transfer: {table_name}")
+            original_table_name = table['name']  # Original table name in RDS
+            bigquery_table_name = 'rds_' + table['name']  # BigQuery table with rds_ prefix
+            logger.info(f"\n🔄 Starting transfer: {original_table_name} → {bigquery_table_name}")
             
             # Get actual row count to determine if this counts as a data transfer
-            count_query = f"SELECT COUNT(*) FROM {table_name}"
+            count_query = f"SELECT COUNT(*) FROM {original_table_name}"
             try:
                 with self.mysql_engine.connect() as conn:
                     result = conn.execute(text(count_query))
                     actual_rows = result.scalar()
             except Exception as e:
-                logger.error(f"❌ Failed to get row count for {table_name}: {e}")
+                logger.error(f"❌ Failed to get row count for {original_table_name}: {e}")
                 actual_rows = 0
             
-            # Step 2: Transfer to BigQuery
-            if self.transfer_table_to_bigquery(table_name):
+            # Step 2: Transfer to BigQuery (using both original and BigQuery table names)
+            if self.transfer_table_to_bigquery(original_table_name, bigquery_table_name):
                 if actual_rows > 0:
                     successful_transfers += 1
-                    logger.info(f"✅ Successfully transferred: {table_name} ({actual_rows:,} rows)")
+                    logger.info(f"✅ Successfully transferred: {original_table_name} → {bigquery_table_name} ({actual_rows:,} rows)")
+                    
+                    # Step 3: Delete from RDS if transfer was successful and deletion is enabled
+                    if delete_after_transfer:
+                        logger.info(f"🗑️ Starting RDS data deletion for: {original_table_name}")
+                        
+                        if self.delete_rds_table_data(original_table_name):
+                            successful_deletions += 1
+                            logger.info(f"✅ Successfully deleted RDS data: {original_table_name}")
+                        else:
+                            logger.error(f"❌ Failed to delete RDS data: {original_table_name}")
+                            logger.warning(f"⚠️ Data remains in both RDS and BigQuery for: {original_table_name}")
+                    else:
+                        logger.info(f"📋 Skipping RDS deletion (disabled): {original_table_name}")
                 else:
                     empty_tables_processed += 1
-                    logger.info(f"✅ Successfully processed empty table: {table_name}")
-                
-                # Step 3: Delete from RDS if transfer was successful and deletion is enabled
-                if delete_after_transfer:
-                    logger.info(f"🗑️ Starting RDS data deletion for: {table_name}")
-                    
-                    if self.delete_rds_table_data(table_name):
-                        successful_deletions += 1
-                        logger.info(f"✅ Successfully deleted RDS data: {table_name}")
-                    else:
-                        logger.error(f"❌ Failed to delete RDS data: {table_name}")
-                        logger.warning(f"⚠️ Data remains in both RDS and BigQuery for: {table_name}")
-                else:
-                    logger.info(f"📋 Skipping RDS deletion (disabled): {table_name}")
+                    logger.info(f"📋 Skipped empty table (no BigQuery table created): {original_table_name}")
                     
             else:
-                logger.error(f"❌ Failed to transfer: {table_name}")
-                logger.info(f"📋 Skipping RDS deletion due to failed transfer: {table_name}")
+                logger.error(f"❌ Failed to transfer: {original_table_name}")
+                logger.info(f"📋 Skipping RDS deletion due to failed transfer: {original_table_name}")
         
         # Summary
         end_time = datetime.now()
@@ -523,13 +522,13 @@ class RDSToBigQueryTransfer:
         logger.info("="*60)
         logger.info("📊 TRANSFER SUMMARY")
         logger.info(f"   Total tables: {len(tables_to_transfer)}")
-        logger.info(f"   Data transfers (rows > 0): {successful_transfers}")
-        logger.info(f"   Empty tables processed: {empty_tables_processed}")
+        logger.info(f"   BigQuery tables created: {successful_transfers}")
+        logger.info(f"   Empty tables skipped: {empty_tables_processed}")
         logger.info(f"   Failed transfers: {len(tables_to_transfer) - successful_transfers - empty_tables_processed}")
         
         if delete_after_transfer:
-            logger.info(f"   Successful deletions: {successful_deletions}")
-            logger.info(f"   Failed deletions: {len(tables_to_transfer) - successful_deletions}")
+            logger.info(f"   RDS successful deletions: {successful_deletions}")
+            logger.info(f"   RDS failed deletions: {successful_transfers - successful_deletions}")
         else:
             logger.info(f"   RDS deletion: Disabled")
             
@@ -538,9 +537,9 @@ class RDSToBigQueryTransfer:
         logger.info("="*60)
         
         # Return True only if all tables were processed successfully (data transfers + empty tables)
-        # and (if enabled) all deletions succeeded
+        # and (if enabled) all deletions succeeded for tables with data
         all_tables_processed = (successful_transfers + empty_tables_processed) == len(tables_to_transfer)
-        all_deletions_ok = not delete_after_transfer or successful_deletions == len(tables_to_transfer)
+        all_deletions_ok = not delete_after_transfer or successful_deletions == successful_transfers
         
         return all_tables_processed and all_deletions_ok
 
