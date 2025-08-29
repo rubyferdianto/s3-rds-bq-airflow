@@ -26,7 +26,7 @@ def verify_bigquery_data():
     project_id = credentials_dict.get('project_id')
     
     client = bigquery.Client(project=project_id, credentials=credentials)
-    dataset_id = f"{project_id}.rds_mysql_data"
+    dataset_id = f"{project_id}.olist_data_warehouse"
     
     print(f"🔍 Checking BigQuery dataset: {dataset_id}")
     

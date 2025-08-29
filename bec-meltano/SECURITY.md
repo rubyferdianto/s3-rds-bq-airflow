@@ -33,7 +33,7 @@ This project now uses environment variables to store sensitive credentials inste
 #### Option 1: Environment Variables (Current Setup)
 ```bash
 # In .env file
-GOOGLE_CLOUD_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
+GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
 TAP_MYSQL_PASSWORD='your_password'
 TARGET_BIGQUERY_PROJECT='your-project-id'
 TARGET_BIGQUERY_DATASET='your_dataset'
@@ -66,7 +66,7 @@ TARGET_BIGQUERY_DATASET='your_dataset'
 - `TAP_MYSQL_PASSWORD`: Password for MySQL database connection
 
 #### Google Cloud BigQuery
-- `GOOGLE_CLOUD_CREDENTIALS_JSON`: Complete service account JSON as a single string (recommended approach)
+- `GOOGLE_APPLICATION_CREDENTIALS_JSON`: Complete service account JSON as a single string (recommended approach)
 
 #### BigQuery Configuration
 - `TARGET_BIGQUERY_PROJECT`: BigQuery project ID
@@ -76,11 +76,11 @@ TARGET_BIGQUERY_DATASET='your_dataset'
 
 1. **Download your service account JSON file from Google Cloud Console**
 2. **Convert the JSON to a single line string** (remove newlines except within the private key)
-3. **Set the `GOOGLE_CLOUD_CREDENTIALS_JSON` environment variable** with the complete JSON string
+3. **Set the `GOOGLE_APPLICATION_CREDENTIALS_JSON` environment variable** with the complete JSON string
 
 Example:
 ```bash
-GOOGLE_CLOUD_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
+GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type": "service_account", "project_id": "your-project", ...}'
 ```
 
 ### Security Benefits

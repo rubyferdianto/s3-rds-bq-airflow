@@ -50,14 +50,14 @@ try:
     
     # For Supabase, we can use the REST API to get connection details
     # Or construct it manually - Supabase uses PostgreSQL on port 5432
-    db_host = "db.tpldiheffudabhiyowod.supabase.co"
+    db_host = "db.royhmnxmsfichopabwsi.supabase.co"
     db_port = "5432"
     db_name = "postgres"
-    db_user = "becuser"
+    db_user = "postgres"
 
     # For the password, we need the database password (different from API key)
     # This should be set in environment variables for security
-    db_password = os.getenv("DB_PASSWORD", os.getenv("SUPABASE_DB_PASSWORD", "your_database_password_here"))
+    db_password = os.getenv("TAP_POSTGRES_PASSWORD", "your_database_password_here")
     
     # Create PostgreSQL connection string
     if db_password != "your_database_password_here":

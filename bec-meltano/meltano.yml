@@ -13,38 +13,96 @@ plugins:
       git+https://github.com/transferwise/pipelinewise.git#subdirectory=singer-connectors/tap-mysql
     config:
       host: bec-db-rds.cvii44gkul2j.ap-southeast-1.rds.amazonaws.com
-      database: bec-db-rds      
+      database: bec-db-rds
       user: admin
       password: $TAP_MYSQL_PASSWORD
       port: 3306
+  - name: tap-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-tap-postgres
+    config:
+      database: postgres
+      filter_schemas:
+      - public
+      host: aws-1-ap-southeast-1.pooler.supabase.com
+      port: 5432
+      user: postgres.royhmnxmsfichopabwsi
+      password: $TAP_POSTGRES_PASSWORD
+    select:
+    - public-olist_order_items_dataset.*
+    - public-olist_order_payments_dataset.*
+    - public-olist_order_reviews_dataset.*
+    - public-olist_orders_dataset.*
+    - public-olist_products_dataset.*
+    - public-olist_sellers_dataset.*
+    - public-olist_customers_dataset.*
+    - public-olist_geolocation_dataset.*        
+    - public_product_category_name_translation.*
   loaders:
   - name: target-bigquery
     variant: z3z1ma
     pip_url: git+https://github.com/z3z1ma/target-bigquery.git
     config:
       batch_size: 104857600
-      credentials_path: $GOOGLE_CLOUD_CREDENTIALS_JSON
+      credentials_path: $GOOGLE_APPLICATION_CREDENTIALS_JSON
       dataset: $TARGET_BIGQUERY_DATASET
       denormalized: true
       flattening_enabled: true
       flattening_max_depth: 1
       method: batch_job
       project: $TARGET_BIGQUERY_PROJECT
+      overwrite: true
+  - name: target-bigquery-supabase
+    inherit_from: target-bigquery
+    config:
+      project: $TARGET_BIGQUERY_PROJECT
+      dataset: $TARGET_BIGQUERY_DATASET
+      credentials_path: /Applications/RF/NTU/SCTP in 
+        DSAI/s3-rds-bq-dagster/bec-meltano/bigquery-credentials.json
+      overwrite: true
+      stream_maps:
+        public-olist_customers_dataset:
+          __alias__: supabase_olist_customers_dataset
+        public-olist_geolocation_dataset:
+          __alias__: supabase_olist_geolocation_dataset
+        public-olist_order_items_dataset:
+          __alias__: supabase_olist_order_items_dataset
+        public-olist_order_payments_dataset:
+          __alias__: supabase_olist_order_payments_dataset
+        public-olist_order_reviews_dataset:
+          __alias__: supabase_olist_order_reviews_dataset
+        public-olist_orders_dataset:
+          __alias__: supabase_olist_orders_dataset
+        public-olist_products_dataset:
+          __alias__: supabase_olist_products_dataset
+        public-olist_sellers_dataset:
+          __alias__: supabase_olist_sellers_dataset
+        public-product_category_name_translation:
+          __alias__: supabase_product_category_name_translation
 
 # Jobs configuration
 jobs:
 - name: rds-to-bigquery
   tasks:
   - tap-mysql target-bigquery
-  
+- name: supabase-to-bigquery
+  tasks:
+  - tap-postgres target-bigquery-supabase
+
 # Hooks for automated cleanup
 hooks:
   post-invoke:
     tap-mysql:
-      - python meltano-post-hook.py
+    - python meltano-post-hook.py
+    tap-postgres:
+    - python meltano-post-hook.py
     target-bigquery:
-      - python meltano-post-hook.py
+    - python meltano-post-hook.py
+    target-bigquery-supabase:
+    - python meltano-post-hook.py
   post-run:
     rds-to-bigquery:
-      - python meltano-post-hook.py
+    - python meltano-post-hook.py
+    supabase-to-bigquery:
+    - python meltano-post-hook.py
 

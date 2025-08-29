@@ -243,7 +243,7 @@ def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='S3-RDS-BigQuery Pipeline')
-    parser.add_argument('--stage', choices=['csv-s3', 's3-rds', 'rds-bq'], 
+    parser.add_argument('--stage', choices=['csv-s3', 's3-rds', 'rds-bq', 'supabase-bq'], 
                        help='Run specific pipeline stage')
     parser.add_argument('--check-connections', action='store_true',
                        help='Check database connections only')
@@ -265,6 +265,18 @@ if __name__ == "__main__":
             logger.info("📥 Running S3 to RDS stage...")
             success = run_script("s3-to-rds.py", "S3 to RDS Import", cwd="bec-aws-bq")
             exit_code = 0 if success else 1
+        elif args.stage == 'supabase-bq':
+            logger.info("🗃️  Running Supabase to BigQuery stage...")
+            # Check if we should use Meltano or direct Python approach
+            use_meltano = os.getenv('USE_MELTANO_SUPABASE', 'true').lower() in ['true', '1', 'yes']
+            
+            if use_meltano:
+                logger.info("💡 Using Meltano ELT pipeline (high-performance PostgreSQL connection)")
+                success = run_script("supabase-to-bq-meltano.py", "Meltano Supabase to BigQuery Transfer", cwd="bec-meltano", use_conda=True)
+            else:
+                logger.info("💡 Using simplified direct Python approach for Supabase (REST API - slower)")
+                success = run_script("supabase-bq.py", "Supabase to BigQuery Transfer", cwd="bec-aws-bq")
+            exit_code = 0 if success else 1
         elif args.stage == 'rds-bq':
             logger.info("🚀 Running RDS to BigQuery stage...")
             # Check if we should use Meltano or direct Python approach
@@ -275,7 +287,7 @@ if __name__ == "__main__":
                 success = run_script("rds-to-bq-meltano.py", "Meltano RDS to BigQuery Transfer", cwd="bec-meltano", use_conda=True)
             else:
                 logger.info("💡 Using simplified direct Python approach (configuration validation only)")
-                success = run_script("rds-bq.py", "Simplified RDS to BigQuery configuration check", cwd="bec-aws-bq")
+                success = run_script("rds-to-bq.py", "Simplified RDS to BigQuery configuration check", cwd="bec-aws-bq")
 
             exit_code = 0 if success else 1
         else:
